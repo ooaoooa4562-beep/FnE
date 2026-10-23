@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +12,11 @@ header{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid 
 .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.5px;font-size:20px}
 .logo-mark{width:38px;height:38px;border-radius:12px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:900}
-.navlinks{display:flex;gap:24px;font-size:14px;font-weight:650;color:#3e4759}
-.navlinks a:hover{color:var(--blue2)}.nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:12px;background:var(--gold);color:#18233b;font-weight:800;padding:13px 20px;cursor:pointer;transition:.2s}
+.navlinks{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:650;color:#3e4759}
+.navlinks a:hover{color:var(--blue2)}
+.lang-switcher{padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:#fbfcfe;font-weight:700;font-size:13px;color:var(--ink);cursor:pointer;outline:none}
+.lang-switcher:focus{border-color:var(--blue)}
+.nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:12px;background:var(--gold);color:#18233b;font-weight:800;padding:13px 20px;cursor:pointer;transition:.2s}
 .nav-cta:hover,.btn:hover{transform:translateY(-2px);filter:brightness(.98)}.menu{display:none;background:none;border:0;font-size:25px}
 .hero{padding:64px 0 58px;background:linear-gradient(125deg,#eaf0ff 0%,#f8f9fc 58%,#fff3d8 100%);overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
@@ -49,56 +52,569 @@ footer{background:#111c31;color:#fff;padding:35px 0}.footer-row{display:flex;jus
 <header>
   <div class="container nav">
     <a class="logo" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:#3766c7">&</span> EASY</span></a>
-    <nav class="navlinks"><a href="#courses">Courses</a><a href="#about">About us</a><a href="#teachers">Teachers</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
-    <a class="nav-cta" href="#contact">Register now ↗</a><button class="menu" aria-label="Menu" onclick="document.querySelector('.navlinks').style.display=document.querySelector('.navlinks').style.display==='flex'?'none':'flex'">☰</button>
+    <nav class="navlinks">
+      <a href="#courses" data-i18n="nav.courses">Курсы</a>
+      <a href="#about" data-i18n="nav.about">О нас</a>
+      <a href="#teachers" data-i18n="nav.teachers">Преподаватели</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#contact" data-i18n="nav.contact">Контакты</a>
+      <select id="langSelect" class="lang-switcher" aria-label="Язык / Language">
+        <option value="ru">Русский</option>
+        <option value="uz">O'zbekcha</option>
+        <option value="en">English</option>
+      </select>
+    </nav>
+    <a class="nav-cta" href="#contact" data-i18n="nav.cta">Записаться ↗</a>
+    <button class="menu" aria-label="Menu" onclick="document.querySelector('.navlinks').style.display=document.querySelector('.navlinks').style.display==='flex'?'none':'flex'">☰</button>
   </div>
 </header>
 <main>
 <section class="hero" id="home">
  <div class="container hero-grid">
   <div>
-   <span class="eyebrow">✦ English language center</span>
-   <h1>English opens<br><span>new doors.</span></h1>
-   <p>Build confidence, communicate freely, and move toward your goals with a learning path made for you.</p>
-   <div class="hero-actions"><a class="btn btn-blue" href="#contact">Find your course ↗</a><a class="btn btn-outline" href="#courses">Explore programs</a></div>
-   <div class="hero-note">Friendly teachers · Practical learning · Support at every step</div>
+   <span class="eyebrow" data-i18n="hero.eyebrow">✦ Языковой центр английского языка</span>
+   <h1 data-i18n="hero.title">Английский открывает<br><span>новые возможности.</span></h1>
+   <p data-i18n="hero.desc">Уверенно общайтесь, развивайте навыки и двигайтесь к своим целям по индивидуальной программе обучения.</p>
+   <div class="hero-actions">
+     <a class="btn btn-blue" href="#contact" data-i18n="hero.btnMain">Подобрать курс ↗</a>
+     <a class="btn btn-outline" href="#courses" data-i18n="hero.btnSec">Программы обучения</a>
+   </div>
+   <div class="hero-note" data-i18n="hero.note">Дружелюбные преподаватели · Практика с первого дня · Поддержка на каждом этапе</div>
   </div>
-  <div class="hero-art"><div class="art-label">YOUR NEXT CHAPTER STARTS HERE</div>
-   <div class="student-card"><h3>Ready to speak English?</h3><p>Start with your level. Grow at your pace.</p><div class="mini-row"><div class="mini"><b>01</b><small>Find your level</small></div><div class="mini"><b>02</b><small>Choose a course</small></div><div class="mini"><b>03</b><small>Make progress</small></div></div></div>
-   <div class="float-pill">Let’s make it happen ✨</div>
+  <div class="hero-art">
+   <div class="art-label" data-i18n="hero.artLabel">ВАШ НОВЫЙ ЭТАП НАЧИНАЕТСЯ ЗДЕСЬ</div>
+   <div class="student-card">
+    <h3 data-i18n="hero.cardTitle">Готовы заговорить по-английски?</h3>
+    <p data-i18n="hero.cardDesc">Начните с комфортного уровня. Развивайтесь в своем темпе.</p>
+    <div class="mini-row">
+     <div class="mini"><b>01</b><small data-i18n="hero.mini1">Узнать уровень</small></div>
+     <div class="mini"><b>02</b><small data-i18n="hero.mini2">Выбрать курс</small></div>
+     <div class="mini"><b>03</b><small data-i18n="hero.mini3">Начать обучение</small></div>
+    </div>
+   </div>
+   <div class="float-pill" data-i18n="hero.pill">Давайте сделаем это ✨</div>
   </div>
  </div>
 </section>
-<div class="stats"><div class="container stats-grid"><div class="stat"><strong>Personal</strong><span>Learning approach</span></div><div class="stat"><strong>Practical</strong><span>Everyday English</span></div><div class="stat"><strong>Support</strong><span>From your first class</span></div><div class="stat"><strong>Your pace</strong><span>Your learning journey</span></div></div></div>
-<section id="courses"><div class="container">
- <div class="section-head"><div><span class="eyebrow">Choose your path</span><h2>Courses for your<br>next big step.</h2></div><p>Whether you’re starting from zero or preparing for an exam, find a program that fits your goals.</p></div>
- <div class="cards">
-  <article class="course"><div class="course-top"><span class="course-icon">🌱</span><span class="tag">START HERE</span></div><h3>General English</h3><p>Build vocabulary, grammar, speaking, listening, reading, and writing skills for real-life situations.</p><div class="course-meta"><span>Beginner → Advanced</span><span>Explore ↗</span></div></article>
-  <article class="course"><div class="course-top"><span class="course-icon">🎯</span><span class="tag">EXAM PREP</span></div><h3>IELTS Preparation</h3><p>Develop exam strategies and practice the skills needed for your IELTS goals.</p><div class="course-meta"><span>Skills + strategy</span><span>Explore ↗</span></div></article>
-  <article class="course"><div class="course-top"><span class="course-icon">💬</span><span class="tag">SPEAK WITH CONFIDENCE</span></div><h3>Speaking Club</h3><p>Practice conversation, share ideas, and feel more comfortable speaking English.</p><div class="course-meta"><span>Conversation practice</span><span>Explore ↗</span></div></article>
+<div class="stats">
+ <div class="container stats-grid">
+  <div class="stat"><strong data-i18n="stats.1.title">Индивидуально</strong><span data-i18n="stats.1.desc">Подход к обучению</span></div>
+  <div class="stat"><strong data-i18n="stats.2.title">Практика</strong><span data-i18n="stats.2.desc">Живой английский</span></div>
+  <div class="stat"><strong data-i18n="stats.3.title">Поддержка</strong><span data-i18n="stats.3.desc">С первого занятия</span></div>
+  <div class="stat"><strong data-i18n="stats.4.title">Ваш темп</strong><span data-i18n="stats.4.desc">Удобный ритм</span></div>
  </div>
-</div></section>
-<section class="about" id="about"><div class="container about-grid">
- <div class="about-visual"><div class="about-panel"><strong>Learning that moves with you.</strong><span>Clear goals. Real practice. Encouraging support.</span></div></div>
- <div><span class="eyebrow">About Fast and Easy</span><h2 style="font-size:clamp(32px,4vw,48px);line-height:1.08;letter-spacing:-1.8px;margin:15px 0">A better way to learn English.</h2><p style="color:var(--muted)">We believe learning a language should feel practical, motivating, and connected to your everyday life. Our approach helps learners build skills and confidence step by step.</p>
- <div class="checklist"><div class="check"><span class="checkmark">✓</span><div><b>Clear learning goals</b><br><span style="color:var(--muted);font-size:14px">Know what you’re working toward at every stage.</span></div></div><div class="check"><span class="checkmark">✓</span><div><b>Real communication</b><br><span style="color:var(--muted);font-size:14px">Practice English for situations beyond the classroom.</span></div></div><div class="check"><span class="checkmark">✓</span><div><b>Supportive environment</b><br><span style="color:var(--muted);font-size:14px">Ask questions, try, learn, and keep improving.</span></div></div></div>
- <a class="btn btn-blue" href="#contact">Talk to our team ↗</a></div>
-</div></section>
-<section><div class="container"><div class="section-head"><div><span class="eyebrow">How it works</span><h2>Your journey in<br>three simple steps.</h2></div><p>We’ll help you find a starting point and choose a program that suits your schedule and goals.</p></div>
- <div class="steps"><article class="step"><span class="step-num">STEP 01</span><h3>Tell us your goal</h3><p>Share why you want to learn English and what you’d like to achieve.</p></article><article class="step"><span class="step-num">STEP 02</span><h3>Find your level</h3><p>Get guidance on your current level and the course that fits you.</p></article><article class="step"><span class="step-num">STEP 03</span><h3>Start learning</h3><p>Join your group, meet your teacher, and begin building confidence.</p></article></div>
-</div></section>
-<section id="teachers" style="background:#fff"><div class="container"><div class="section-head"><div><span class="eyebrow">Meet the team</span><h2>People who help<br>you move forward.</h2></div><p>Our teachers guide, encourage, and support you throughout your English learning journey.</p></div>
-<div class="teacher-grid"><article class="teacher"><div class="avatar">👩‍🏫</div><h3>Teacher profile</h3><p>General English · Beginner & Elementary</p></article><article class="teacher"><div class="avatar">👨‍🏫</div><h3>Teacher profile</h3><p>Speaking · Communication practice</p></article><article class="teacher"><div class="avatar">👩🏻‍🏫</div><h3>Teacher profile</h3><p>IELTS · Exam preparation</p></article></div><p class="footer-muted" style="margin-top:14px">Replace these sample profiles with your real teachers and photos.</p></div></section>
-<section><div class="container"><div class="cta"><div><span class="eyebrow" style="background:#ffffff18;color:#fff;border-color:#ffffff30">Your first step</span><h2>Let’s find the<br>right course for you.</h2><p>Tell us a little about yourself. Our team can help you choose your next step.</p><a class="btn" href="#contact">Register for a course ↗</a></div><div style="font-size:100px;text-align:center;opacity:.9">✦</div></div></div></section>
-<section id="faq"><div class="container faq"><div><span class="eyebrow">Good to know</span><h2>Questions?<br>We’re here.</h2><p style="color:var(--muted)">A few helpful answers before you get started.</p></div><div class="faq-list"><details><summary>How do I choose the right course?</summary><p>Send us your goals and current level. The team can recommend a suitable program.</p></details><details><summary>Do I need to know English before joining?</summary><p>No. Beginner options can help you start with the basics. Tell us your experience when registering.</p></details><details><summary>Can I prepare for IELTS?</summary><p>Yes, the IELTS preparation program is listed as one of the course options.</p></details><details><summary>How do I register?</summary><p>Fill out the form below. This demo form shows a confirmation locally; connect it to your email or backend to receive real registrations.</p></details></div></div></section>
-<section class="contact" id="contact"><div class="container"><div class="section-head"><div><span class="eyebrow">Get in touch</span><h2>Start with a simple<br>hello.</h2></div><p>Leave your details and tell us what you’re looking for. We’ll help you explore your options.</p></div>
-<div class="contact-grid"><div class="contact-info"><h3>Fast and Easy</h3><p>English language center</p><div class="info-line">📍 <b>Location:</b> Add your address</div><div class="info-line">☎️ <b>Phone:</b> Add your phone number</div><div class="info-line">✉️ <b>Email:</b> Add your email</div><div class="info-line">🕒 <b>Hours:</b> Add working hours</div><p style="font-size:12px;margin-top:20px">Update these details before publishing.</p></div>
-<form id="registerForm"><div class="form-grid"><div><label for="name">FULL NAME</label><input id="name" name="name" required placeholder="Your name"></div><div><label for="phone">PHONE NUMBER</label><input id="phone" name="phone" required type="tel" placeholder="+998 __ ___ __ __"></div><div><label for="course">COURSE</label><select id="course" name="course"><option>General English</option><option>IELTS Preparation</option><option>Speaking Club</option><option>Not sure yet</option></select></div><div><label for="level">CURRENT LEVEL</label><select id="level" name="level"><option>Not sure</option><option>Beginner</option><option>Elementary</option><option>Pre-Intermediate</option><option>Intermediate</option><option>Upper-Intermediate</option><option>Advanced</option></select></div><div class="full"><label for="message">WHAT IS YOUR GOAL? (OPTIONAL)</label><textarea id="message" name="message" rows="3" placeholder="Tell us what you want to achieve..."></textarea></div><div class="full"><button class="btn btn-blue" type="submit" style="width:100%">Send registration request ↗</button><div id="formMsg" class="form-msg">Thanks! This demo form is working locally. Connect a backend to receive submissions.</div></div></div></form></div></div></section>
+</div>
+<section id="courses">
+ <div class="container">
+  <div class="section-head">
+   <div>
+    <span class="eyebrow" data-i18n="courses.eyebrow">Выберите свой путь</span>
+    <h2 data-i18n="courses.title">Курсы для вашего<br>главного шага.</h2>
+   </div>
+   <p data-i18n="courses.desc">Начните с нуля или подготовьтесь к экзамену — выберите программу под свои цели.</p>
+  </div>
+  <div class="cards">
+   <article class="course">
+    <div class="course-top"><span class="course-icon">🌱</span><span class="tag" data-i18n="course.1.tag">С НУЛЯ</span></div>
+    <h3 data-i18n="course.1.name">Общий английский</h3>
+    <p data-i18n="course.1.desc">Развивайте словарный запас, грамматику, разговорную речь, аудирование и письмо для реальной жизни.</p>
+    <div class="course-meta"><span data-i18n="course.1.level">Начинающий → Продвинутый</span><span data-i18n="course.explore">Подробнее ↗</span></div>
+   </article>
+   <article class="course">
+    <div class="course-top"><span class="course-icon">🎯</span><span class="tag" data-i18n="course.2.tag">ЭКЗАМЕНЫ</span></div>
+    <h3 data-i18n="course.2.name">Подготовка к IELTS</h3>
+    <p data-i18n="course.2.desc">Отрабатывайте эффективные стратегии и навыки для достижения желаемого балла на экзамене.</p>
+    <div class="course-meta"><span data-i18n="course.2.level">Стратегия + практика</span><span data-i18n="course.explore">Подробнее ↗</span></div>
+   </article>
+   <article class="course">
+    <div class="course-top"><span class="course-icon">💬</span><span class="tag" data-i18n="course.3.tag">РАЗГОВОР</span></div>
+    <h3 data-i18n="course.3.name">Разговорный клуб</h3>
+    <p data-i18n="course.3.desc">Практикуйте живую беседу, делитесь идеями и избавляйтесь от языкового барьера.</p>
+    <div class="course-meta"><span data-i18n="course.3.level">Разговорная практика</span><span data-i18n="course.explore">Подробнее ↗</span></div>
+   </article>
+  </div>
+ </div>
+</section>
+<section class="about" id="about">
+ <div class="container about-grid">
+  <div class="about-visual">
+   <div class="about-panel">
+    <strong data-i18n="about.panelTitle">Лучший способ выучить английский.</strong>
+    <span data-i18n="about.panelDesc">Четкие цели. Живая практика. Мощная поддержка.</span>
+   </div>
+  </div>
+  <div>
+   <span class="eyebrow" data-i18n="about.eyebrow">О центре Fast and Easy</span>
+   <h2 style="font-size:clamp(32px,4vw,48px);line-height:1.08;letter-spacing:-1.8px;margin:15px 0" data-i18n="about.title">Уверенность в каждом слове.</h2>
+   <p style="color:var(--muted)" data-i18n="about.desc">Мы верим, что изучение языка должно быть практичным, мотивированным и связанным с вашей реальной жизнью. Наш подход помогает уверенно расти шаг за шагом.</p>
+   <div class="checklist">
+    <div class="check">
+     <span class="checkmark">✓</span>
+     <div><b data-i18n="about.check1.title">Четкие цели</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check1.desc">Понимайте, к чему вы стремистесь на каждом этапе.</span></div>
+    </div>
+    <div class="check">
+     <span class="checkmark">✓</span>
+     <div><b data-i18n="about.check2.title">Живое общение</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check2.desc">Применяйте английский в ситуациях за пределами класса.</span></div>
+    </div>
+    <div class="check">
+     <span class="checkmark">✓</span>
+     <div><b data-i18n="about.check3.title">Поддерживающая атмосфера</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check3.desc">Задавайте вопросы, пробуйте, ошибайтесь и улучшайте навыки.</span></div>
+    </div>
+   </div>
+   <a class="btn btn-blue" href="#contact" data-i18n="about.btn">Связаться с командой ↗</a>
+  </div>
+ </div>
+</section>
+<section>
+ <div class="container">
+  <div class="section-head">
+   <div>
+    <span class="eyebrow" data-i18n="steps.eyebrow">Как это работает</span>
+    <h2 data-i18n="steps.title">Ваш путь в три<br>простых шага.</h2>
+   </div>
+   <p data-i18n="steps.desc">Мы поможем определить ваш уровень и подобрать программу под ваш график и цели.</p>
+  </div>
+  <div class="steps">
+   <article class="step">
+    <span class="step-num" data-i18n="steps.1.num">ШАГ 01</span>
+    <h3 data-i18n="steps.1.title">Расскажите о цели</h3>
+    <p data-i18n="steps.1.desc">Поделитесь, зачем вам английский и чего вы хотите достичь.</p>
+   </article>
+   <article class="step">
+    <span class="step-num" data-i18n="steps.2.num">ШАГ 02</span>
+    <h3 data-i18n="steps.2.title">Определите уровень</h3>
+    <p data-i18n="steps.2.desc">Получите консультацию по вашему текущему уровню и подходящему курсу.</p>
+   </article>
+   <article class="step">
+    <span class="step-num" data-i18n="steps.3.num">ШАГ 03</span>
+    <h3 data-i18n="steps.3.title">Начните обучение</h3>
+    <p data-i18n="steps.3.desc">Присоединяйтесь к группе, познакомьтесь с преподавателем и обретайте уверенность.</p>
+   </article>
+  </div>
+ </div>
+</section>
+<section id="teachers" style="background:#fff">
+ <div class="container">
+  <div class="section-head">
+   <div>
+    <span class="eyebrow" data-i18n="teachers.eyebrow">Наша команда</span>
+    <h2 data-i18n="teachers.title">Люди, которые помогают<br>вам двигаться вперед.</h2>
+   </div>
+   <p data-i18n="teachers.desc">Наши преподаватели направляют, вдохновляют и поддерживают вас на протяжении всей учебы.</p>
+  </div>
+  <div class="teacher-grid">
+   <article class="teacher"><div class="avatar">👩‍🏫</div><h3 data-i18n="teachers.1.name">Преподаватель</h3><p data-i18n="teachers.1.desc">Общий английский · Базовый уровень</p></article>
+   <article class="teacher"><div class="avatar">👨‍🏫</div><h3 data-i18n="teachers.2.name">Преподаватель</h3><p data-i18n="teachers.2.desc">Разговорные клубы · Практика речи</p></article>
+   <article class="teacher"><div class="avatar">👩🏻‍🏫</div><h3 data-i18n="teachers.3.name">Преподаватель</h3><p data-i18n="teachers.3.desc">IELTS · Экзаменационная подготовка</p></article>
+  </div>
+  <p class="footer-muted" style="margin-top:14px" data-i18n="teachers.note">Замените эти образцы профилей на реальных преподавателей и фотографии.</p>
+ </div>
+</section>
+<section>
+ <div class="container">
+  <div class="cta">
+   <div>
+    <span class="eyebrow" style="background:#ffffff18;color:#fff;border-color:#ffffff30" data-i18n="cta.eyebrow">Ваш первый шаг</span>
+    <h2 data-i18n="cta.title">Давайте подберем<br>правильный курс.</h2>
+    <p data-i18n="cta.desc">Расскажите немного о себе, и наша команда поможет выбрать оптимальный путь.</p>
+    <a class="btn" href="#contact" data-i18n="cta.btn">Записаться на курс ↗</a>
+   </div>
+   <div style="font-size:100px;text-align:center;opacity:.9">✦</div>
+  </div>
+ </div>
+</section>
+<section id="faq">
+ <div class="container faq">
+  <div>
+   <span class="eyebrow" data-i18n="faq.eyebrow">Полезно знать</span>
+   <h2 data-i18n="faq.title">Остались вопросы?<br>Мы на связи.</h2>
+   <p style="color:var(--muted)" data-i18n="faq.desc">Несколько ответов, которые помогут вам сделать первый шаг.</p>
+  </div>
+  <div class="faq-list">
+   <details><summary data-i18n="faq.1.q">Как выбрать подходящий курс?</summary><p data-i18n="faq.1.a">Расскажите нам о ваших целях и текущем уровне, и команда подберет идеальную программу.</p></details>
+   <details><summary data-i18n="faq.2.q">Нужно ли знать английский до начала занятий?</summary><p data-i18n="faq.2.a">Нет. Есть группы для начинающих с нуля. Просто укажите ваш опыт при регистрации.</p></details>
+   <details><summary data-i18n="faq.3.q">Можно ли подготовиться к IELTS?</summary><p data-i18n="faq.3.a">Да, у нас есть специализированная программа подготовки к экзамену IELTS.</p></details>
+   <details><summary data-i18n="faq.4.q">Как зарегистрироваться?</summary><p data-i18n="faq.4.a">Заполните форму ниже. Это демо-форма, подключите бэкенд или почту для реальных заявок.</p></details>
+  </div>
+ </div>
+</section>
+<section class="contact" id="contact">
+ <div class="container">
+  <div class="section-head">
+   <div>
+    <span class="eyebrow" data-i18n="contact.eyebrow">Контакты</span>
+    <h2 data-i18n="contact.title">Начнем с простого<br>приветствия.</h2>
+   </div>
+   <p data-i18n="contact.desc">Оставьте свои данные и расскажите, что вы ищете. Мы поможем выбрать лучшее решение.</p>
+  </div>
+  <div class="contact-grid">
+   <div class="contact-info">
+    <h3>Fast and Easy</h3>
+    <p data-i18n="contact.subtitle">Языковой центр английского языка</p>
+    <div class="info-line">📍 <b data-i18n="contact.locLabel">Адрес:</b> <span data-i18n="contact.locVal">Ташкент, ул. Навои, 12</span></div>
+    <div class="info-line">☎️ <b data-i18n="contact.phoneLabel">Телефон:</b> +998 (90) 123-45-67</div>
+    <div class="info-line">✉️ <b data-i18n="contact.emailLabel">Email:</b> info@fastandeasy.uz</div>
+    <div class="info-line">🕒 <b data-i18n="contact.hoursLabel">Часы работы:</b> <span data-i18n="contact.hoursVal">Пн-Сб: 9:00 - 20:00</span></div>
+    <p style="font-size:12px;margin-top:20px" data-i18n="contact.note">Обновите эти данные перед публикацией.</p>
+   </div>
+   <form id="registerForm">
+    <div class="form-grid">
+     <div>
+      <label for="name" data-i18n="form.nameLabel">ФИО</label>
+      <input id="name" name="name" required placeholder="Ваше имя" data-i18n-placeholder="form.namePlace">
+     </div>
+     <div>
+      <label for="phone" data-i18n="form.phoneLabel">НОМЕР ТЕЛЕФОНА</label>
+      <input id="phone" name="phone" required type="tel" placeholder="+998 __ ___ __ __">
+     </div>
+     <div>
+      <label for="course" data-i18n="form.courseLabel">КУРС</label>
+      <select id="course" name="course">
+       <option value="General English" data-i18n="form.optGen">Общий английский (General English)</option>
+       <option value="IELTS" data-i18n="form.optIelts">Подготовка к IELTS</option>
+       <option value="Speaking Club" data-i18n="form.optSpeak">Разговорный клуб</option>
+       <option value="Not sure" data-i18n="form.optUnsure">Еще не уверен(а)</option>
+      </select>
+     </div>
+     <div>
+      <label for="level" data-i18n="form.levelLabel">ТЕКУЩИЙ УРОВЕНЬ</label>
+      <select id="level" name="level">
+       <option value="Not sure" data-i18n="form.lvl1">Пока не знаю / С нуля</option>
+       <option value="Beginner">Beginner (Начальный)</option>
+       <option value="Elementary">Elementary</option>
+       <option value="Pre-Intermediate">Pre-Intermediate</option>
+       <option value="Intermediate">Intermediate</option>
+       <option value="Upper-Intermediate">Upper-Intermediate</option>
+       <option value="Advanced">Advanced (Продвинутый)</option>
+      </select>
+     </div>
+     <div class="full">
+      <label for="message" data-i18n="form.goalLabel">ВАША ЦЕЛЬ (НЕОБЯЗАТЕЛЬНО)</label>
+      <textarea id="message" name="message" rows="3" placeholder="Расскажите, чего вы хотите достичь..." data-i18n-placeholder="form.goalPlace"></textarea>
+     </div>
+     <div class="full">
+      <button class="btn btn-blue" type="submit" style="width:100%" data-i18n="form.submitBtn">Отправить заявку ↗</button>
+      <div id="formMsg" class="form-msg" data-i18n="form.successMsg">Спасибо! Демо-форма успешно отправлена. Подключите бэкенд для приема заявок.</div>
+     </div>
+    </div>
+   </form>
+  </div>
+ </div>
+</section>
 </main>
-<footer><div class="container footer-row"><a class="logo" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:var(--gold)">&</span> EASY</span></a><span class="footer-muted">© <span id="year"></span> Fast and Easy. Sample website concept.</span><div class="footer-links"><a href="#courses">Courses</a><a href="#about">About</a><a href="#contact">Contact</a></div></div></footer>
+<footer>
+ <div class="container footer-row">
+  <a class="logo" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:var(--gold)">&</span> EASY</span></a>
+  <span class="footer-muted">© <span id="year"></span> Fast and Easy. <span data-i18n="footer.concept">Концепт сайта языкового центра.</span></span>
+  <div class="footer-links">
+   <a href="#courses" data-i18n="nav.courses">Курсы</a>
+   <a href="#about" data-i18n="nav.about">О нас</a>
+   <a href="#contact" data-i18n="nav.contact">Контакты</a>
+  </div>
+ </div>
+</footer>
 <script>
-document.getElementById('year').textContent=new Date().getFullYear();
-document.getElementById('registerForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('formMsg').style.display='block';});
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const translations = {
+  ru: {
+    "nav.courses": "Курсы",
+    "nav.about": "О нас",
+    "nav.teachers": "Преподаватели",
+    "nav.faq": "FAQ",
+    "nav.contact": "Контакты",
+    "nav.cta": "Записаться ↗",
+    "hero.eyebrow": "✦ Языковой центр английского языка",
+    "hero.title": "Английский открывает<br><span>новые возможности.</span>",
+    "hero.desc": "Уверенно общайтесь, развивайте навыки и двигайтесь к своим целям по индивидуальной программе обучения.",
+    "hero.btnMain": "Подобрать курс ↗",
+    "hero.btnSec": "Программы обучения",
+    "hero.note": "Дружелюбные преподаватели · Практика с первого дня · Поддержка на каждом этапе",
+    "hero.artLabel": "ВАШ НОВЫЙ ЭТАП НАЧИНАЕТСЯ ЗДЕСЬ",
+    "hero.cardTitle": "Готовы заговорить по-английски?",
+    "hero.cardDesc": "Начните с комфортного уровня. Развивайтесь в своем темпе.",
+    "hero.mini1": "Узнать уровень",
+    "hero.mini2": "Выбрать курс",
+    "hero.mini3": "Начать обучение",
+    "hero.pill": "Давайте сделаем это ✨",
+    "stats.1.title": "Индивидуально", "stats.1.desc": "Подход к обучению",
+    "stats.2.title": "Практика", "stats.2.desc": "Живой английский",
+    "stats.3.title": "Поддержка", "stats.3.desc": "С первого занятия",
+    "stats.4.title": "Ваш темп", "stats.4.desc": "Удобный ритм",
+    "courses.eyebrow": "Выберите свой путь",
+    "courses.title": "Курсы для вашего<br>главного шага.",
+    "courses.desc": "Начните с нуля или подготовьтесь к экзамену — выберите программу под свои цели.",
+    "course.1.tag": "С НУЛЯ", "course.1.name": "Общий английский", "course.1.desc": "Развивайте словарный запас, грамматику, разговорную речь, аудирование и письмо для реальной жизни.", "course.1.level": "Начинающий → Продвинутый",
+    "course.2.tag": "ЭКЗАМЕНЫ", "course.2.name": "Подготовка к IELTS", "course.2.desc": "Отрабатывайте эффективные стратегии и навыки для достижения желаемого балла на экзамене.", "course.2.level": "Стратегия + практика",
+    "course.3.tag": "РАЗГОВОР", "course.3.name": "Разговорный клуб", "course.3.desc": "Практикуйте живую беседу, делитесь идеями и избавляйтесь от языкового барьера.", "course.3.level": "Разговорная практика",
+    "course.explore": "Подробнее ↗",
+    "about.panelTitle": "Лучший способ выучить английский.",
+    "about.panelDesc": "Четкие цели. Живая практика. Мощная поддержка.",
+    "about.eyebrow": "О центре Fast and Easy",
+    "about.title": "Уверенность в каждом слове.",
+    "about.desc": "Мы верим, что изучение языка должно быть практичным, мотивированным и связанным с вашей реальной жизнью. Наш подход помогает уверенно расти шаг за шагом.",
+    "about.check1.title": "Четкие цели", "about.check1.desc": "Понимайте, к чему вы стремистесь на каждом этапе.",
+    "about.check2.title": "Живое общение", "about.check2.desc": "Применяйте английский в ситуациях за пределами класса.",
+    "about.check3.title": "Поддерживающая атмосфера", "about.check3.desc": "Задавайте вопросы, пробуйте, ошибайтесь и улучшайте навыки.",
+    "about.btn": "Связаться с командой ↗",
+    "steps.eyebrow": "Как это работает",
+    "steps.title": "Ваш путь в три<br>простых шага.",
+    "steps.desc": "Мы поможем определить ваш уровень и подобрать программу под ваш график и цели.",
+    "steps.1.num": "ШАГ 01", "steps.1.title": "Расскажите о цели", "steps.1.desc": "Поделитесь, зачем вам английский и чего вы хотите достичь.",
+    "steps.2.num": "ШАГ 02", "steps.2.title": "Определите уровень", "steps.2.desc": "Получите консультацию по вашему текущему уровню и подходящему курсу.",
+    "steps.3.num": "ШАГ 03", "steps.3.title": "Начните обучение", "steps.3.desc": "Присоединяйтесь к группе, познакомьтесь с преподавателем и обретайте уверенность.",
+    "teachers.eyebrow": "Наша команда",
+    "teachers.title": "Люди, которые помогают<br>вам двигаться вперед.",
+    "teachers.desc": "Наши преподаватели направляют, вдохновляют и поддерживают вас на протяжении всей учебы.",
+    "teachers.1.name": "Преподаватель", "teachers.1.desc": "Общий английский · Базовый уровень",
+    "teachers.2.name": "Преподаватель", "teachers.2.desc": "Разговорные клубы · Практика речи",
+    "teachers.3.name": "Преподаватель", "teachers.3.desc": "IELTS · Экзаменационная подготовка",
+    "teachers.note": "Замените эти образцы профилей на реальных преподавателей и фотографии.",
+    "cta.eyebrow": "Ваш первый шаг",
+    "cta.title": "Давайте подберем<br>правильный курс.",
+    "cta.desc": "Расскажите немного о себе, и наша команда поможет выбрать оптимальный путь.",
+    "cta.btn": "Записаться на курс ↗",
+    "faq.eyebrow": "Полезно знать",
+    "faq.title": "Остались вопросы?<br>Мы на связи.",
+    "faq.desc": "Несколько ответов, которые помогут вам сделать первый шаг.",
+    "faq.1.q": "Как выбрать подходящий курс?", "faq.1.a": "Расскажите нам о ваших целях и текущем уровне, и команда подберет идеальную программу.",
+    "faq.2.q": "Нужно ли знать английский до начала занятий?", "faq.2.a": "Нет. Есть группы для начинающих с нуля. Просто укажите ваш опыт при регистрации.",
+    "faq.3.q": "Можно ли подготовиться к IELTS?", "faq.3.a": "Да, у нас есть специализированная программа подготовки к экзамену IELTS.",
+    "faq.4.q": "Как зарегистрироваться?", "faq.4.a": "Заполните форму ниже. Это демо-форма, подключите бэкенд или почту для реальных заявок.",
+    "contact.eyebrow": "Контакты",
+    "contact.title": "Начнем с простого<br>приветствия.",
+    "contact.desc": "Оставьте свои данные и расскажите, что вы ищете. Мы поможем выбрать лучшее решение.",
+    "contact.subtitle": "Языковой центр английского языка",
+    "contact.locLabel": "Адрес:", "contact.locVal": "Ташкент, ул. Навои, 12",
+    "contact.phoneLabel": "Телефон:",
+    "contact.emailLabel": "Email:",
+    "contact.hoursLabel": "Часы работы:", "contact.hoursVal": "Пн-Сб: 9:00 - 20:00",
+    "contact.note": "Обновите эти данные перед публикацией.",
+    "form.nameLabel": "ФИО", "form.namePlace": "Ваше имя",
+    "form.phoneLabel": "НОМЕР ТЕЛЕФОНА",
+    "form.courseLabel": "КУРС",
+    "form.optGen": "Общий английский (General English)",
+    "form.optIelts": "Подготовка к IELTS",
+    "form.optSpeak": "Разговорный клуб",
+    "form.optUnsure": "Еще не уверен(а)",
+    "form.levelLabel": "ТЕКУЩИЙ УРОВЕНЬ",
+    "form.lvl1": "Пока не знаю / С нуля",
+    "form.goalLabel": "ВАША ЦЕЛЬ (НЕОБЯЗАТЕЛЬНО)", "form.goalPlace": "Расскажите, чего вы хотите достичь...",
+    "form.submitBtn": "Отправить заявку ↗",
+    "form.successMsg": "Спасибо! Демо-форма успешно отправлена. Подключите бэкенд для приема заявок.",
+    "footer.concept": "Концепт сайта языкового центра."
+  },
+  uz: {
+    "nav.courses": "Kurslar",
+    "nav.about": "Biz haqimizda",
+    "nav.teachers": "O'qituvchilar",
+    "nav.faq": "FAQ",
+    "nav.contact": "Aloqa",
+    "nav.cta": "Ro'yxatdan o'tish ↗",
+    "hero.eyebrow": "✦ Ingliz tili o'quv markazi",
+    "hero.title": "Ingliz tili yangi<br><span>eshiklarni ochadi.</span>",
+    "hero.desc": "O'zingizga bo'lgan ishonchni oshiring, erkin muloqot qiling va shaxsiy ta'lim dasturi bilan maqsadingizga erishing.",
+    "hero.btnMain": "Kursni tanlash ↗",
+    "hero.btnSec": "Dasturlarni ko'rish",
+    "hero.note": "Tajribali o'qituvchilar · Amaliy ta'lim · Har qadamda yordam",
+    "hero.artLabel": "SIZNING YANGI BOSQICHINGIZ SHU YERDAN BOSHLANADI",
+    "hero.cardTitle": "Ingliz tilida gaplashishga tayyormisiz?",
+    "hero.cardDesc": "Darajangizdan boshlang. O'z sur'atingizda o'siring.",
+    "hero.mini1": "Darajani aniqlash",
+    "hero.mini2": "Kursni tanlash",
+    "hero.mini3": "Natijaga erishish",
+    "hero.pill": "Buni amalga oshiramiz ✨",
+    "stats.1.title": "Shaxsiy", "stats.1.desc": "Ta'lim yondashuvi",
+    "stats.2.title": "Amaliy", "stats.2.desc": "Kundalik ingliz tili",
+    "stats.3.title": "Yordam", "stats.3.desc": "Birinchi darsdan boshlab",
+    "stats.4.title": "O'z sur'atingiz", "stats.4.desc": "Sizning yo'lingiz",
+    "courses.eyebrow": "Yo'nalishni tanlang",
+    "courses.title": "Sizning muhim<br>qadamingiz uchun kurslar.",
+    "courses.desc": "Noldan boshlayapsizmi yoki imtihonga tayyorgarlik ko'ryapsizmi, o'z maqsadingizga mos dasturni toping.",
+    "course.1.tag": "NOLDAN", "course.1.name": "Umumiy ingliz tili", "course.1.desc": "Hayotiy vaziyatlar uchun so'z boyligi, grammatika, gapirish, tinglash va yozish ko'nikmalarini rivojlantiring.", "course.1.level": "Boshlang'ich → Yuqori",
+    "course.2.tag": "IMTIHON", "course.2.name": "IELTS ga tayyorgarlik", "course.2.desc": "Imtihon strategiyalari va maqsadli balni qo'lga kiritish uchun zarur ko'nikmalarni egallang.", "course.2.level": "Strategiya + amaliyot",
+    "course.3.tag": "MULOQOT", "course.3.name": "Speaking Club", "course.3.desc": "Jonli muloqot qiling, fikr almashing va ingliz tilida erkin gaplashing.", "course.3.level": "Muloqot amaliyoti",
+    "course.explore": "Batafsil ↗",
+    "about.panelTitle": "Ingliz tilini o'rganishning eng yaxshi usuli.",
+    "about.panelDesc": "Aniq maqsadlar. Jonli amaliyot. Kuchli qo'llab-quvvatlash.",
+    "about.eyebrow": "Fast and Easy haqida",
+    "about.title": "Har bir so'zda ishonch.",
+    "about.desc": "Til o'rganish amaliy, qiziqarli va kundalik hayotingizga bog'liq bo'lishi kerak deb hisoblaymiz. Bizning yondashuvimiz qadam-baqadam ishonch hosil qilishga yordam beradi.",
+    "about.check1.title": "Aniq maqsadlar", "about.check1.desc": "Har bir bosqichda nimaga intilayotganingizni biling.",
+    "about.check2.title": "Haqiqiy muloqot", "about.check2.desc": "Sinfxonadan tashqari vaziyatlarda ingliz tilini qo'llang.",
+    "about.check3.title": "Qo'llab-quvvatlovchi muhit", "about.check3.desc": "Savollar bering, harakat qiling, o'rganing va yaxshilaning.",
+    "about.btn": "Jamoamiz bilan bog'lanish ↗",
+    "steps.eyebrow": "Bu qanday ishlaydi",
+    "steps.title": "Uch oddiy qadamda<br>sizning yo'lingiz.",
+    "steps.desc": "Dastlabki darajangizni aniqlash va jadvalingizga mos kursni tanlashda yordam beramiz.",
+    "steps.1.num": "QADAM 01", "steps.1.title": "Maqsadingizni ayting", "steps.1.desc": "Nima uchun ingliz tilini o'rganmoqchi ekanligingizni va nimaga erishmoqchiligingizni ulashing.",
+    "steps.2.num": "QADAM 02", "steps.2.title": "Darajangizni toping", "steps.2.desc": "Joriy darajangiz va sizga mos kurs bo'yicha maslahat oling.",
+    "steps.3.num": "QADAM 03", "steps.3.title": "O'qishni boshlang", "steps.3.desc": "Guruhingizga qo'shiling, o'qituvchingiz bilan tanishing va ishonchni mustahkamlang.",
+    "teachers.eyebrow": "Bizning jamoa",
+    "teachers.title": "Sizning olg'a siljishingizga<br>yordam beradigan ustozlar.",
+    "teachers.desc": "O'qituvchilarimiz ingliz tilini o'rganish yo'lida sizni qo'llab-quvvatlaydi.",
+    "teachers.1.name": "O'qituvchi", "teachers.1.desc": "General English · Boshlang'ich daraja",
+    "teachers.2.name": "O'qituvchi", "teachers.2.desc": "Speaking Club · Muloqot amaliyoti",
+    "teachers.3.name": "O'qituvchi", "teachers.3.desc": "IELTS · Imtihon tayyorgarligi",
+    "teachers.note": "Ushbu namuna profillarni haqiqiy o'qituvchilar va rasmlar bilan almashtiring.",
+    "cta.eyebrow": "Sizning birinchi qadamingiz",
+    "cta.title": "To'g'ri kursni<br>tanlaymiz.",
+    "cta.desc": "O'zingiz haqingizda qisqacha yozing. Jamoamiz sizga eng ma'qul yo'lni topishga yordam beradi.",
+    "cta.btn": "Kursga yozilish ↗",
+    "faq.eyebrow": "Foydali ma'lumot",
+    "faq.title": "Savollaringiz bormi?<br>Biz shu yerdamiz.",
+    "faq.desc": "Boshlashdan oldin ba'zi muhim javoblar.",
+    "faq.1.q": "To'g'ri kursni qanday tanlash mumkin?", "faq.1.a": "Maqsadingiz va darajangizni yuboring. Jamoamiz mos dasturni tavsiya qiladi.",
+    "faq.2.q": "Qo'shilishdan oldin ingliz tilini bilishim kerakmi?", "faq.2.a": "Yo'q. Noldan boshlovchilar uchun maxsus guruhlar bor. Ro'yxatdan o'tishda tajribangizni ayting.",
+    "faq.3.q": "IELTS ga tayyorgarlik ko'rsa bo'ladimi?", "faq.3.a": "Ha, IELTS tayyorgarlik kursi mavjud.",
+    "faq.4.q": "Qanday ro'yxatdan o'tiladi?", "faq.4.a": "Quyidagi shaklni to'ldiring. Bu demo forma, real arizalar uchun backend yoki pochtani ulang.",
+    "contact.eyebrow": "Bog'lanish",
+    "contact.title": "Oddiy salomlashishdan<br>boshlaymiz.",
+    "contact.desc": "Ma'lumotlaringizni qoldiring va nima qidirayotganingizni ayting. Imkoniyatlarni topishda yordam beramiz.",
+    "contact.subtitle": "Ingliz tili o'quv markazi",
+    "contact.locLabel": "Manzil:", "contact.locVal": "Toshkent shahri, Navoiy ko'chasi, 12",
+    "contact.phoneLabel": "Telefon:",
+    "contact.emailLabel": "Email:",
+    "contact.hoursLabel": "Ish vaqti:", "contact.hoursVal": "Dushanba - Shanba: 9:00 - 20:00",
+    "contact.note": "Nashr qilishdan oldin ushbu ma'lumotlarni yangilang.",
+    "form.nameLabel": "TO'LIQ ISM", "form.namePlace": "Ismingiz",
+    "form.phoneLabel": "TELEFON RAQAMI",
+    "form.courseLabel": "KURS",
+    "form.optGen": "Umumiy ingliz tili (General English)",
+    "form.optIelts": "IELTS ga tayyorgarlik",
+    "form.optSpeak": "Speaking Club",
+    "form.optUnsure": "Hali aniq emas",
+    "form.levelLabel": "JORIY DARAJA",
+    "form.lvl1": "Aniq emas / Noldan",
+    "form.goalLabel": "MAQSADINGIZ (IXTIYORIY)", "form.goalPlace": "Nimaga erishmoqchisiz...",
+    "form.submitBtn": "Arizani yuborish ↗",
+    "form.successMsg": "Rahmat! Demo forma muvaffaqiyatli ishlamoqda. Arizalarni qabul qilish uchun backendni ulang.",
+    "footer.concept": "O'quv markazi veb-sayt konsepsiyasi."
+  },
+  en: {
+    "nav.courses": "Courses",
+    "nav.about": "About us",
+    "nav.teachers": "Teachers",
+    "nav.faq": "FAQ",
+    "nav.contact": "Contact",
+    "nav.cta": "Register now ↗",
+    "hero.eyebrow": "✦ English language center",
+    "hero.title": "English opens<br><span>new doors.</span>",
+    "hero.desc": "Build confidence, communicate freely, and move toward your goals with a learning path made for you.",
+    "hero.btnMain": "Find your course ↗",
+    "hero.btnSec": "Explore programs",
+    "hero.note": "Friendly teachers · Practical learning · Support at every step",
+    "hero.artLabel": "YOUR NEXT CHAPTER STARTS HERE",
+    "hero.cardTitle": "Ready to speak English?",
+    "hero.cardDesc": "Start with your level. Grow at your pace.",
+    "hero.mini1": "Find your level",
+    "hero.mini2": "Choose a course",
+    "hero.mini3": "Make progress",
+    "hero.pill": "Let’s make it happen ✨",
+    "stats.1.title": "Personal", "stats.1.desc": "Learning approach",
+    "stats.2.title": "Practical", "stats.2.desc": "Everyday English",
+    "stats.3.title": "Support", "stats.3.desc": "From your first class",
+    "stats.4.title": "Your pace", "stats.4.desc": "Your learning journey",
+    "courses.eyebrow": "Choose your path",
+    "courses.title": "Courses for your<br>next big step.",
+    "courses.desc": "Whether you’re starting from zero or preparing for an exam, find a program that fits your goals.",
+    "course.1.tag": "START HERE", "course.1.name": "General English", "course.1.desc": "Build vocabulary, grammar, speaking, listening, reading, and writing skills for real-life situations.", "course.1.level": "Beginner → Advanced",
+    "course.2.tag": "EXAM PREP", "course.2.name": "IELTS Preparation", "course.2.desc": "Develop exam strategies and practice the skills needed for your IELTS goals.", "course.2.level": "Skills + strategy",
+    "course.3.tag": "SPEAK WITH CONFIDENCE", "course.3.name": "Speaking Club", "course.3.desc": "Practice conversation, share ideas, and feel more comfortable speaking English.", "course.3.level": "Conversation practice",
+    "course.explore": "Explore ↗",
+    "about.panelTitle": "Learning that moves with you.",
+    "about.panelDesc": "Clear goals. Real practice. Encouraging support.",
+    "about.eyebrow": "About Fast and Easy",
+    "about.title": "A better way to learn English.",
+    "about.desc": "We believe learning a language should feel practical, motivating, and connected to your everyday life. Our approach helps learners build skills and confidence step by step.",
+    "about.check1.title": "Clear learning goals", "about.check1.desc": "Know what you’re working toward at every stage.",
+    "about.check2.title": "Real communication", "about.check2.desc": "Practice English for situations beyond the classroom.",
+    "about.check3.title": "Supportive environment", "about.check3.desc": "Ask questions, try, learn, and keep improving.",
+    "about.btn": "Talk to our team ↗",
+    "steps.eyebrow": "How it works",
+    "steps.title": "Your journey in<br>three simple steps.",
+    "steps.desc": "We’ll help you find a starting point and choose a program that suits your schedule and goals.",
+    "steps.1.num": "STEP 01", "steps.1.title": "Tell us your goal", "steps.1.desc": "Share why you want to learn English and what you’d like to achieve.",
+    "steps.2.num": "STEP 02", "steps.2.title": "Find your level", "steps.2.desc": "Get guidance on your current level and the course that fits you.",
+    "steps.3.num": "STEP 03", "steps.3.title": "Start learning", "steps.3.desc": "Join your group, meet your teacher, and begin building confidence.",
+    "teachers.eyebrow": "Meet the team",
+    "teachers.title": "People who help<br>you move forward.",
+    "teachers.desc": "Our teachers guide, encourage, and support you throughout your English learning journey.",
+    "teachers.1.name": "Teacher profile", "teachers.1.desc": "General English · Beginner & Elementary",
+    "teachers.2.name": "Teacher profile", "teachers.2.desc": "Speaking · Communication practice",
+    "teachers.3.name": "Teacher profile", "teachers.3.desc": "IELTS · Exam preparation",
+    "teachers.note": "Replace these sample profiles with your real teachers and photos.",
+    "cta.eyebrow": "Your first step",
+    "cta.title": "Let’s find the<br>right course for you.",
+    "cta.desc": "Tell us a little about yourself. Our team can help you choose your next step.",
+    "cta.btn": "Register for a course ↗",
+    "faq.eyebrow": "Good to know",
+    "faq.title": "Questions?<br>We’re here.",
+    "faq.desc": "A few helpful answers before you get started.",
+    "faq.1.q": "How do I choose the right course?", "faq.1.a": "Send us your goals and current level. The team can recommend a suitable program.",
+    "faq.2.q": "Do I need to know English before joining?", "faq.2.a": "No. Beginner options can help you start with the basics. Tell us your experience when registering.",
+    "faq.3.q": "Can I prepare for IELTS?", "faq.3.a": "Yes, the IELTS preparation program is listed as one of the course options.",
+    "faq.4.q": "How do I register?", "faq.4.a": "Fill out the form below. This demo form shows a confirmation locally; connect it to your email or backend to receive real registrations.",
+    "contact.eyebrow": "Get in touch",
+    "contact.title": "Start with a simple<br>hello.",
+    "contact.desc": "Leave your details and tell us what you’re looking for. We’ll help you explore your options.",
+    "contact.subtitle": "English language center",
+    "contact.locLabel": "Location:", "contact.locVal": "Tashkent, Navoi street, 12",
+    "contact.phoneLabel": "Phone:",
+    "contact.emailLabel": "Email:",
+    "contact.hoursLabel": "Hours:", "contact.hoursVal": "Mon-Sat: 9:00 - 20:00",
+    "contact.note": "Update these details before publishing.",
+    "form.nameLabel": "FULL NAME", "form.namePlace": "Your name",
+    "form.phoneLabel": "PHONE NUMBER",
+    "form.courseLabel": "COURSE",
+    "form.optGen": "General English",
+    "form.optIelts": "IELTS Preparation",
+    "form.optSpeak": "Speaking Club",
+    "form.optUnsure": "Not sure yet",
+    "form.levelLabel": "CURRENT LEVEL",
+    "form.lvl1": "Not sure",
+    "form.goalLabel": "WHAT IS YOUR GOAL? (OPTIONAL)", "form.goalPlace": "Tell us what you want to achieve...",
+    "form.submitBtn": "Send registration request ↗",
+    "form.successMsg": "Thanks! This demo form is working locally. Connect a backend to receive submissions.",
+    "footer.concept": "Sample website concept."
+  }
+};
+
+function changeLanguage(lang) {
+  const t = translations[lang];
+  if (!t) return;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      el.innerHTML = t[key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) {
+      el.placeholder = t[key];
+    }
+  });
+
+  document.documentElement.lang = lang;
+  localStorage.setItem('preferred_lang', lang);
+}
+
+const langSelect = document.getElementById('langSelect');
+langSelect.addEventListener('change', (e) => {
+  changeLanguage(e.target.value);
+});
+
+const savedLang = localStorage.getItem('preferred_lang') || 'ru';
+langSelect.value = savedLang;
+changeLanguage(savedLang);
+
+document.getElementById('registerForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('formMsg').style.display='block';
+});
 </script>
 </body>
 </html>
