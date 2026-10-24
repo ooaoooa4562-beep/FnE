@@ -1,4 +1,5 @@
 // bot.js — модуль для отправки заявок в Telegram
+const fetch = require('node-fetch');
 
 async function sendLeadToTelegram(leadData) {
     const { name, phone, course, level, message } = leadData;
