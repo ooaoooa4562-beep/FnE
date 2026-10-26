@@ -3,88 +3,122 @@
 a{color:inherit;text-decoration:none}.container{width:min(1160px,92%);margin:auto}
 
 /* ==========================================
-   1. ХОЛСТ ОГНЯ И ЛЕТАЮЩИЕ 5 ИКОНОК
+   СИСТЕМА МОНЕТ И ХОЛСТ ОГНЯ
    ========================================== */
 #fireCanvas {
-    position: fixed;
-    top: 0; left: 0;
+    position: fixed; top: 0; left: 0;
     width: 100vw; height: 100vh;
-    pointer-events: none;
-    z-index: 99999;
+    pointer-events: none; z-index: 99999;
 }
 
-.pop-fne-icon {
+.coin-counter {
     position: fixed;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 6px 12px;
-    border-radius: 50px;
-    box-shadow: 0 10px 25px rgba(36, 75, 155, 0.3);
+    top: 20px; right: 20px;
+    z-index: 99999;
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 18px; border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(255, 189, 66, 0.4);
     border: 2px solid var(--gold);
-    cursor: pointer;
-    user-select: none;
+    font-weight: 900; font-size: 16px; color: var(--ink);
+    transition: transform 0.2s ease;
+}
+.coin-counter.pulse-gain { transform: scale(1.3) rotate(5deg); }
+.coin-icon { font-size: 22px; }
+.coin-label { font-size: 12px; color: var(--muted); }
+
+.floating-coin-popup {
+    position: fixed; z-index: 999999;
+    font-size: 20px; font-weight: 900; color: var(--gold);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    pointer-events: none;
+    animation: floatUpAndFade 1s forwards ease-out;
+}
+@keyframes floatUpAndFade {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
+}
+
+/* ==========================================
+   ЛЕТАЮЩИЕ ИКОНЫ C LOGO ОООООООООО.PNG
+   ========================================== */
+.pop-fne-icon {
+    position: fixed; z-index: 9999;
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px 14px; border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(36, 75, 155, 0.3);
+    border: 2px solid var(--blue);
+    cursor: pointer; user-select: none;
     transition: transform 0.2s ease, opacity 0.3s;
 }
-
-.pop-fne-icon img { width: 26px; height: 26px; border-radius: 50%; }
+.pop-fne-icon img { width: 36px; height: 18px; object-fit: contain; }
 .pop-fne-icon span { font-weight: 900; font-size: 11px; color: var(--blue); }
-
-.pop-fne-icon:hover { transform: scale(1.25) rotate(5deg); }
+.pop-fne-icon:hover { transform: scale(1.3) rotate(-5deg); }
 .pop-fne-icon.popped { opacity: 0; transform: scale(2) rotate(45deg); pointer-events: none; }
 
 .icon-anim-1 { animation: floatSlow 6s ease-in-out infinite alternate; }
 .icon-anim-2 { animation: floatMedium 8s ease-in-out infinite alternate; }
 .icon-anim-3 { animation: floatFast 5s ease-in-out infinite alternate; }
-
 @keyframes floatSlow { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(-40px) translateX(30px); } }
 @keyframes floatMedium { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(50px) translateX(-40px); } }
 @keyframes floatFast { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(-60px) translateX(-20px); } }
 
 /* ==========================================
-   2. МАШИНКА ПРИ СКРОЛЛЕ
+   ИСЧЕЗНОВЕНИЕ САЙТА И КОТИК В КОНЦЕ
+   ========================================== */
+#mainSiteWrapper {
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+}
+#mainSiteWrapper.disappear-site {
+    opacity: 0;
+    transform: scale(0.8) translateY(-100px);
+    filter: blur(20px);
+    pointer-events: none;
+}
+
+.end-cat-section {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, #111c31, #244b9b);
+    z-index: 999990;
+    opacity: 0; pointer-events: none;
+    transition: opacity 1s ease;
+}
+.end-cat-section.show-cat {
+    opacity: 1; pointer-events: auto;
+}
+.cat-card {
+    background: #fff; padding: 40px; border-radius: 30px;
+    text-align: center; max-width: 450px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    animation: popUpCat 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.cat-img { width: 100%; max-height: 250px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; }
+.cat-card h2 { font-size: 24px; color: var(--ink); margin: 0 0 10px; }
+.cat-card p { font-size: 18px; color: var(--blue); font-weight: 800; margin-bottom: 20px; }
+@keyframes popUpCat { 0% { transform: scale(0.5); } 100% { transform: scale(1); } }
+
+/* ==========================================
+   МАШИНКА, ВОЛНЫ, РАКЕТА И БАЗОВЫЕ СТИЛИ
    ========================================== */
 .scroll-car {
-    position: fixed;
-    bottom: 12px;
-    right: -150px;
-    z-index: 9000;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: #fff;
-    padding: 6px 14px;
-    border-radius: 30px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    border: 1px solid var(--blue);
-    pointer-events: none;
-    transition: right 0.1s linear;
+    position: fixed; bottom: 12px; right: -150px;
+    z-index: 9000; display: flex; align-items: center; gap: 6px;
+    background: #fff; padding: 6px 14px; border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15); border: 1px solid var(--blue);
+    pointer-events: none; transition: right 0.1s linear;
 }
 .car-body { font-size: 24px; animation: carBounce 0.3s infinite alternate; }
 .car-text { font-size: 11px; font-weight: 800; color: var(--blue); }
 @keyframes carBounce { from { transform: translateY(0); } to { transform: translateY(-3px); } }
 
-/* ==========================================
-   3. ВОЛНЫ НА ЗАДНЕМ ФОНЕ
-   ========================================== */
-.background-waves {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: -1; opacity: 0.25;
-}
-.wave {
-    position: absolute; width: 200%; height: 100%;
-    background: radial-gradient(circle, rgba(55,102,199,0.12) 0%, transparent 70%);
-    animation: waveMotion 18s infinite linear;
-}
+.background-waves { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; opacity: 0.25; }
+.wave { position: absolute; width: 200%; height: 100%; background: radial-gradient(circle, rgba(55,102,199,0.12) 0%, transparent 70%); animation: waveMotion 18s infinite linear; }
 .wave2 { animation-duration: 25s; animation-direction: reverse; }
 @keyframes waveMotion { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* ==========================================
-   4. ЛЕТАЮЩАЯ РАКЕТА C ЛОГОТИПОМ
-   ========================================== */
 .flying-rocket {
     position: fixed; z-index: 999; pointer-events: none;
     display: flex; align-items: center; gap: 8px;
@@ -104,49 +138,33 @@ a{color:inherit;text-decoration:none}.container{width:min(1160px,92%);margin:aut
 }
 @keyframes rocketShake { from { transform: translateY(0); } to { transform: translateY(-4px); } }
 
-/* ==========================================
-   5. БОЛЕЕ 50 АНИМАЦИЙ ДЛЯ ВСЕХ БЛОКОВ
-   ========================================== */
-.reveal-block {
-    opacity: 0; transform: translateY(60px) scale(0.95);
-    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* БЛОКОВЫЕ АНИМАЦИИ */
+.reveal-block { opacity: 0; transform: translateY(60px) scale(0.95); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
 .reveal-block.active { opacity: 1; transform: translateY(0) scale(1); }
-
-/* Выезды и надвигания блоков */
 .slide-in-left { transform: translateX(-80px); opacity: 0; transition: all 1s ease; }
 .slide-in-left.active { transform: translateX(0); opacity: 1; }
-
 .slide-in-right { transform: translateX(80px); opacity: 0; transition: all 1s ease; }
 .slide-in-right.active { transform: translateX(0); opacity: 1; }
-
 .rotate-in { transform: rotate(-5deg) scale(0.9); opacity: 0; transition: all 0.8s ease; }
 .rotate-in.active { transform: rotate(0deg) scale(1); opacity: 1; }
-
 .card-flip-in { opacity: 0; transform: rotateY(90deg); transition: all 0.8s ease; }
 .card-flip-in.active { opacity: 1; transform: rotateY(0deg); }
 
-/* Вращения, пульсации и постоянный интерактив */
 .spin-on-hover:hover { transform: rotate(360deg); transition: transform 0.8s ease; }
 .pulse-button { animation: buttonPulse 2s infinite; }
 @keyframes buttonPulse { 0% { box-shadow: 0 0 0 0 rgba(255, 189, 66, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 189, 66, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 189, 66, 0); } }
-
 .infinite-spin-slow { animation: spin 20s linear infinite; display: inline-block; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
-
 .float-anim { animation: floatVertical 4s ease-in-out infinite; }
 @keyframes floatVertical { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-
 .wiggle-anim { animation: wiggle 2s infinite; }
 @keyframes wiggle { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
-
 .glow-border { transition: all 0.3s ease; }
 .glow-border:hover { box-shadow: 0 0 25px rgba(55, 102, 199, 0.4); transform: translateY(-8px); }
-
 .card-3d-hover { transition: transform 0.4s ease; transform-style: preserve-3d; }
 .card-3d-hover:hover { transform: rotateX(10deg) rotateY(-10deg) translateY(-10px); }
 
-/* Базовые стили структуры */
+/* ЭЛЕМЕНТЫ СТРУКТУРЫ */
 header{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line)}
 .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}
