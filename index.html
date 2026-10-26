@@ -8,6 +8,12 @@
 </head>
 <body>
 
+<!-- Холст для спавна частиц огня при лопании иконок -->
+<canvas id="fireCanvas"></canvas>
+
+<!-- 5 интерактивных летающих иконок (лопаются с огнем) -->
+<div class="pop-icon-container" id="popIcons"></div>
+
 <!-- Летающая ракета с вашим логотипом -->
 <div class="flying-rocket">
     <span class="rocket-icon">🚀</span>
@@ -15,22 +21,37 @@
     <span class="rocket-text">Fast & Easy</span>
 </div>
 
+<!-- Анимированная машинка, проезжающая при скролле -->
+<div class="scroll-car" id="scrollCar">
+    <span class="car-body">🚗💨</span>
+    <span class="car-text">Fast Learning!</span>
+</div>
+
+<!-- Фоновые анимированные волны -->
+<div class="background-waves">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+</div>
+
 <header>
   <div class="container nav">
-    <a class="logo" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:#3766c7">&</span> EASY</span></a>
+    <a class="logo spin-on-hover" href="#home">
+        <span class="logo-mark pulse-glow">F</span>
+        <span>FAST <span style="color:#3766c7">&</span> EASY</span>
+    </a>
     <nav class="navlinks">
-      <a href="#courses" data-i18n="nav.courses">Курсы</a>
-      <a href="#about" data-i18n="nav.about">О нас</a>
-      <a href="#teachers" data-i18n="nav.teachers">Преподаватели</a>
-      <a href="#faq" data-i18n="nav.faq">FAQ</a>
-      <a href="#contact" data-i18n="nav.contact">Контакты</a>
+      <a href="#courses" class="nav-item-anim" data-i18n="nav.courses">Курсы</a>
+      <a href="#about" class="nav-item-anim" data-i18n="nav.about">О нас</a>
+      <a href="#teachers" class="nav-item-anim" data-i18n="nav.teachers">Преподаватели</a>
+      <a href="#faq" class="nav-item-anim" data-i18n="nav.faq">FAQ</a>
+      <a href="#contact" class="nav-item-anim" data-i18n="nav.contact">Контакты</a>
       <select id="langSelect" class="lang-switcher" aria-label="Язык / Language">
         <option value="ru">Русский</option>
         <option value="uz">O'zbekcha</option>
         <option value="en">English</option>
       </select>
     </nav>
-    <a class="nav-cta" href="#contact" data-i18n="nav.cta">Записаться ↗</a>
+    <a class="nav-cta pulse-button" href="#contact" data-i18n="nav.cta">Записаться ↗</a>
     <button class="menu" aria-label="Menu" onclick="document.querySelector('.navlinks').style.display=document.querySelector('.navlinks').style.display==='flex'?'none':'flex'">☰</button>
   </div>
 </header>
@@ -38,33 +59,33 @@
 <main>
 <section class="hero" id="home">
  <div class="container hero-grid">
-  <div>
-   <span class="eyebrow" data-i18n="hero.eyebrow">✦ Языковой центр английского языка</span>
-   <h1 data-i18n="hero.title">Английский открывает<br><span>новые возможности.</span></h1>
-   <p data-i18n="hero.desc">Уверенно общайтесь, развивайте навыки и двигайтесь к своим целям по индивидуальной программе обучения.</p>
+  <div class="hero-text-block slide-in-left">
+   <span class="eyebrow floating-badge" data-i18n="hero.eyebrow">✦ Языковой центр английского языка</span>
+   <h1 data-i18n="hero.title" class="glitch-text">Английский открывает<br><span class="text-gradient">новые возможности.</span></h1>
+   <p data-i18n="hero.desc" class="fade-in-up">Уверенно общайтесь, развивайте навыки и двигайтесь к своим целям по индивидуальной программе обучения.</p>
    <div class="hero-actions">
-     <a class="btn btn-blue" href="#contact" data-i18n="hero.btnMain">Подобрать курс ↗</a>
-     <a class="btn btn-outline" href="#courses" data-i18n="hero.btnSec">Программы обучения</a>
+     <a class="btn btn-blue pulse-hover" href="#contact" data-i18n="hero.btnMain">Подобрать курс ↗</a>
+     <a class="btn btn-outline float-anim" href="#courses" data-i18n="hero.btnSec">Программы обучения</a>
    </div>
    <div class="hero-note" data-i18n="hero.note">Дружелюбные преподаватели · Практика с первого дня · Поддержка на каждом этапе</div>
   </div>
-  <div class="hero-art">
-   <div class="art-label" data-i18n="hero.artLabel">ВАШ НОВЫЙ ЭТАП НАЧИНАЕТСЯ ЗДЕСЬ</div>
-   <div class="student-card">
+  <div class="hero-art 3d-tilt-card">
+   <div class="art-label infinite-spin-slow" data-i18n="hero.artLabel">⚙️ ВАШ НОВЫЙ ЭТАП НАЧИНАЕТСЯ ЗДЕСЬ</div>
+   <div class="student-card float-card">
     <h3 data-i18n="hero.cardTitle">Готовы заговорить по-английски?</h3>
     <p data-i18n="hero.cardDesc">Начните с комфортного уровня. Развивайтесь в своем темпе.</p>
     <div class="mini-row">
-     <div class="mini"><b>01</b><small data-i18n="hero.mini1">Узнать уровень</small></div>
-     <div class="mini"><b>02</b><small data-i18n="hero.mini2">Выбрать курс</small></div>
-     <div class="mini"><b>03</b><small data-i18n="hero.mini3">Начать обучение</small></div>
+     <div class="mini pop-hover"><b>01</b><small data-i18n="hero.mini1">Узнать уровень</small></div>
+     <div class="mini pop-hover"><b>02</b><small data-i18n="hero.mini2">Выбрать курс</small></div>
+     <div class="mini pop-hover"><b>03</b><small data-i18n="hero.mini3">Начать обучение</small></div>
     </div>
    </div>
-   <div class="float-pill" data-i18n="hero.pill">Давайте сделаем это ✨</div>
+   <div class="float-pill wiggle-anim" data-i18n="hero.pill">Давайте сделаем это ✨</div>
   </div>
  </div>
 </section>
 
-<div class="stats reveal-block">
+<div class="stats reveal-block rotate-in">
  <div class="container stats-grid">
   <div class="stat"><strong data-i18n="stats.1.title">Индивидуально</strong><span data-i18n="stats.1.desc">Подход к обучению</span></div>
   <div class="stat"><strong data-i18n="stats.2.title">Практика</strong><span data-i18n="stats.2.desc">Живой английский</span></div>
@@ -73,30 +94,30 @@
  </div>
 </div>
 
-<section id="courses" class="reveal-block">
+<section id="courses" class="reveal-block slide-up-3d">
  <div class="container">
   <div class="section-head">
    <div>
-    <span class="eyebrow" data-i18n="courses.eyebrow">Выберите свой путь</span>
+    <span class="eyebrow floating-badge" data-i18n="courses.eyebrow">Выберите свой путь</span>
     <h2 data-i18n="courses.title">Курсы для вашего<br>главного шага.</h2>
    </div>
    <p data-i18n="courses.desc">Начните с нуля или подготовьтесь к экзамену — выберите программу под свои цели.</p>
   </div>
   <div class="cards">
-   <article class="course">
-    <div class="course-top"><span class="course-icon">🌱</span><span class="tag" data-i18n="course.1.tag">С НУЛЯ</span></div>
+   <article class="course card-flip-in">
+    <div class="course-top"><span class="course-icon spin-icon">🌱</span><span class="tag" data-i18n="course.1.tag">С НУЛЯ</span></div>
     <h3 data-i18n="course.1.name">Общий английский</h3>
     <p data-i18n="course.1.desc">Развивайте словарный запас, грамматику, разговорную речь, аудирование и письмо для реальной жизни.</p>
     <div class="course-meta"><span data-i18n="course.1.level">Начинающий → Продвинутый</span><span data-i18n="course.explore">Подробнее ↗</span></div>
    </article>
-   <article class="course">
-    <div class="course-top"><span class="course-icon">🎯</span><span class="tag" data-i18n="course.2.tag">ЭКЗАМЕНЫ</span></div>
+   <article class="course card-flip-in" style="animation-delay:0.2s">
+    <div class="course-top"><span class="course-icon spin-icon">🎯</span><span class="tag" data-i18n="course.2.tag">ЭКЗАМЕНЫ</span></div>
     <h3 data-i18n="course.2.name">Подготовка к IELTS</h3>
     <p data-i18n="course.2.desc">Отрабатывайте эффективные стратегии и навыки для достижения желаемого балла на экзамене.</p>
     <div class="course-meta"><span data-i18n="course.2.level">Стратегия + практика</span><span data-i18n="course.explore">Подробнее ↗</span></div>
    </article>
-   <article class="course">
-    <div class="course-top"><span class="course-icon">💬</span><span class="tag" data-i18n="course.3.tag">РАЗГОВОР</span></div>
+   <article class="course card-flip-in" style="animation-delay:0.4s">
+    <div class="course-top"><span class="course-icon spin-icon">💬</span><span class="tag" data-i18n="course.3.tag">РАЗГОВОР</span></div>
     <h3 data-i18n="course.3.name">Разговорный клуб</h3>
     <p data-i18n="course.3.desc">Практикуйте живую беседу, делитесь идеями и избавляйтесь от языкового барьера.</p>
     <div class="course-meta"><span data-i18n="course.3.level">Разговорная практика</span><span data-i18n="course.explore">Подробнее ↗</span></div>
@@ -105,150 +126,129 @@
  </div>
 </section>
 
-<section class="about reveal-block" id="about">
+<section class="about reveal-block zoom-in-block" id="about">
  <div class="container about-grid">
-  <div class="about-visual">
-   <div class="about-panel">
+  <div class="about-visual float-anim">
+   <div class="about-panel glassmorphism">
     <strong data-i18n="about.panelTitle">Лучший способ выучить английский.</strong>
     <span data-i18n="about.panelDesc">Четкие цели. Живая практика. Мощная поддержка.</span>
    </div>
   </div>
-  <div>
-   <span class="eyebrow" data-i18n="about.eyebrow">О центре Fast and Easy</span>
+  <div class="slide-in-right">
+   <span class="eyebrow floating-badge" data-i18n="about.eyebrow">О центре Fast and Easy</span>
    <h2 style="font-size:clamp(32px,4vw,48px);line-height:1.08;letter-spacing:-1.8px;margin:15px 0" data-i18n="about.title">Уверенность в каждом слове.</h2>
    <p style="color:var(--muted)" data-i18n="about.desc">Мы верим, что изучение языка должно быть практичным, мотивированным и связанным с вашей реальной жизнью. Наш подход помогает уверенно расти шаг за шагом.</p>
    <div class="checklist">
-    <div class="check"><span class="checkmark">✓</span><div><b data-i18n="about.check1.title">Четкие цели</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check1.desc">Понимайте, к чему вы стремистесь на каждом этапе.</span></div></div>
-    <div class="check"><span class="checkmark">✓</span><div><b data-i18n="about.check2.title">Живое общение</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check2.desc">Применяйте английский в ситуациях за пределами класса.</span></div></div>
-    <div class="check"><span class="checkmark">✓</span><div><b data-i18n="about.check3.title">Поддерживающая атмосфера</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check3.desc">Задавайте вопросы, пробуйте, ошибайтесь и улучшайте навыки.</span></div></div>
+    <div class="check check-anim"><span class="checkmark pop-icon">✓</span><div><b data-i18n="about.check1.title">Четкие цели</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check1.desc">Понимайте, к чему вы стремистесь на каждом этапе.</span></div></div>
+    <div class="check check-anim"><span class="checkmark pop-icon">✓</span><div><b data-i18n="about.check2.title">Живое общение</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check2.desc">Применяйте английский в ситуациях за пределами класса.</span></div></div>
+    <div class="check check-anim"><span class="checkmark pop-icon">✓</span><div><b data-i18n="about.check3.title">Поддерживающая атмосфера</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check3.desc">Задавайте вопросы, пробуйте, ошибайтесь и улучшайте навыки.</span></div></div>
    </div>
-   <a class="btn btn-blue" href="#contact" data-i18n="about.btn">Связаться с командой ↗</a>
+   <a class="btn btn-blue pulse-button" href="#contact" data-i18n="about.btn">Связаться с командой ↗</a>
   </div>
  </div>
 </section>
 
-<section class="reveal-block">
+<section class="reveal-block cascade-steps">
  <div class="container">
   <div class="section-head">
    <div>
-    <span class="eyebrow" data-i18n="steps.eyebrow">Как это работает</span>
+    <span class="eyebrow floating-badge" data-i18n="steps.eyebrow">Как это работает</span>
     <h2 data-i18n="steps.title">Ваш путь в три<br>простых шага.</h2>
    </div>
    <p data-i18n="steps.desc">Мы поможем определить ваш уровень и подобрать программу под ваш график и цели.</p>
   </div>
   <div class="steps">
-   <article class="step"><span class="step-num" data-i18n="steps.1.num">ШАГ 01</span><h3 data-i18n="steps.1.title">Расскажите о цели</h3><p data-i18n="steps.1.desc">Поделитесь, зачем вам английский и чего вы хотите достичь.</p></article>
-   <article class="step"><span class="step-num" data-i18n="steps.2.num">ШАГ 02</span><h3 data-i18n="steps.2.title">Определите уровень</h3><p data-i18n="steps.2.desc">Получите консультацию по вашему текущему уровню и подходящему курсу.</p></article>
-   <article class="step"><span class="step-num" data-i18n="steps.3.num">ШАГ 03</span><h3 data-i18n="steps.3.title">Начните обучение</h3><p data-i18n="steps.3.desc">Присоединяйтесь к группе, познакомьтесь с преподавателем и обретайте уверенность.</p></article>
+   <article class="step step-hover-bounce"><span class="step-num pulse-glow" data-i18n="steps.1.num">ШАГ 01</span><h3 data-i18n="steps.1.title">Расскажите о цели</h3><p data-i18n="steps.1.desc">Поделитесь, зачем вам английский и чего вы хотите достичь.</p></article>
+   <article class="step step-hover-bounce"><span class="step-num pulse-glow" data-i18n="steps.2.num">ШАГ 02</span><h3 data-i18n="steps.2.title">Определите уровень</h3><p data-i18n="steps.2.desc">Получите консультацию по вашему текущему уровню и подходящему курсу.</p></article>
+   <article class="step step-hover-bounce"><span class="step-num pulse-glow" data-i18n="steps.3.num">ШАГ 03</span><h3 data-i18n="steps.3.title">Начните обучение</h3><p data-i18n="steps.3.desc">Присоединяйтесь к группе, познакомьтесь с преподавателем и обретайте уверенность.</p></article>
   </div>
  </div>
 </section>
 
-<!-- Блок с преподавателями -->
-<section id="teachers" class="reveal-block" style="background:#fff">
+<section id="teachers" class="reveal-block swing-in" style="background:#fff">
   <div class="container">
     <div class="section-head">
       <div>
-        <span class="eyebrow" data-i18n="teachers.eyebrow">Наша команда</span>
+        <span class="eyebrow floating-badge" data-i18n="teachers.eyebrow">Наша команда</span>
         <h2 data-i18n="teachers.title">Люди, которые помогают<br>вам двигаться вперед.</h2>
       </div>
       <p data-i18n="teachers.desc">Наши преподаватели направляют, вдохновляют и поддерживают вас на протяжении всей учебы.</p>
     </div>
     <div class="teacher-grid">
-      <article class="teacher"><div class="avatar">👩‍🏫</div><h3 data-i18n="teachers.1.name">Преподаватель</h3><p data-i18n="teachers.1.desc">Общий английский · Базовый уровень</p></article>
-      <article class="teacher"><div class="avatar">👨‍🏫</div><h3 data-i18n="teachers.2.name">Преподаватель</h3><p data-i18n="teachers.2.desc">Разговорные клубы · Практика речи</p></article>
-      <article class="teacher"><div class="avatar">👩🏻‍🏫</div><h3 data-i18n="teachers.3.name">Преподаватель</h3><p data-i18n="teachers.3.desc">IELTS · Экзаменационная подготовка</p></article>
+      <article class="teacher card-3d-hover"><div class="avatar float-avatar">👩‍🏫</div><h3 data-i18n="teachers.1.name">Преподаватель</h3><p data-i18n="teachers.1.desc">Общий английский · Базовый уровень</p></article>
+      <article class="teacher card-3d-hover"><div class="avatar float-avatar">👨‍🏫</div><h3 data-i18n="teachers.2.name">Преподаватель</h3><p data-i18n="teachers.2.desc">Разговорные клубы · Практика речи</p></article>
+      <article class="teacher card-3d-hover"><div class="avatar float-avatar">👩🏻‍🏫</div><h3 data-i18n="teachers.3.name">Преподаватель</h3><p data-i18n="teachers.3.desc">IELTS · Экзаменационная подготовка</p></article>
     </div>
     <p class="footer-muted" style="margin-top:14px" data-i18n="teachers.note">Замените эти образцы профилей на реальных преподавателей и фотографии.</p>
   </div>
 </section>
 
-<!-- Блок с сертификатами -->
-<section class="reveal-block">
+<section class="reveal-block push-in">
   <div class="container">
     <div class="section-head">
       <div>
-        <span class="eyebrow">Доверие и качество</span>
+        <span class="eyebrow floating-badge">Доверие и качество</span>
         <h2>Наши сертификаты<br>и достижения.</h2>
       </div>
       <p>Официальные лицензии и подтверждения стандартов нашего обучения.</p>
     </div>
     <div class="cards">
-      <article class="course"><div class="course-top"><span class="course-icon">📜</span><span class="tag">ЛИЦЕНЗИЯ</span></div><h3>Лицензия МинОбра</h3><p>Официальное разрешение на осуществление образовательной деятельности.</p></article>
-      <article class="course"><div class="course-top"><span class="course-icon">🏆</span><span class="tag">СТАНДАРТ</span></div><h3>Международный стандарт</h3><p>Методика обучения соответствует мировым стандартам качества.</p></article>
-      <article class="course"><div class="course-top"><span class="course-icon">⭐</span><span class="tag">РЕЙТИНГ</span></div><h3>Лучший центр года</h3><p>Высокие оценки от студентов и независимых платформ.</p></article>
+      <article class="course glow-border"><div class="course-top"><span class="course-icon rotate-spin">📜</span><span class="tag">ЛИЦЕНЗИЯ</span></div><h3>Лицензия МинОбра</h3><p>Официальное разрешение на осуществление образовательной деятельности.</p></article>
+      <article class="course glow-border"><div class="course-top"><span class="course-icon rotate-spin">🏆</span><span class="tag">СТАНДАРТ</span></div><h3>Международный стандарт</h3><p>Методика обучения соответствует мировым стандартам качества.</p></article>
+      <article class="course glow-border"><div class="course-top"><span class="course-icon rotate-spin">⭐</span><span class="tag">РЕЙТИНГ</span></div><h3>Лучший центр года</h3><p>Высокие оценки от студентов и независимых платформ.</p></article>
     </div>
   </div>
 </section>
 
-<!-- Блок со зданием -->
-<section class="reveal-block" style="background:#fff">
+<section class="reveal-block expand-center">
  <div class="container">
-  <div class="section-head">
+  <div class="cta neon-box-glow">
    <div>
-    <span class="eyebrow">Комфорт для учебы</span>
-    <h2>Наш современный<br>учебный центр.</h2>
-   </div>
-   <p>Уютные аудитории, оборудованные всем необходимым для эффективных занятий.</p>
-  </div>
-  <div class="cards">
-   <article class="course"><div class="course-top"><span class="course-icon">🏢</span><span class="tag">ЛОКАЦИЯ</span></div><h3>Удобное расположение</h3><p>Центр города, легкий доступ на общественном транспорте.</p></article>
-   <article class="course"><div class="course-top"><span class="course-icon">🪑</span><span class="tag">КОМФОРТ</span></div><h3>Современные классы</h3><p>Просторные аудитории с кондиционерами и мультимедиа.</p></article>
-   <article class="course"><div class="course-top"><span class="course-icon">☕</span><span class="tag">АТМОСФЕРА</span></div><h3>Зона отдыха</h3><p>Места для общения на английском языке в перерывах.</p></article>
-  </div>
- </div>
-</section>
-
-<section class="reveal-block">
- <div class="container">
-  <div class="cta">
-   <div>
-    <span class="eyebrow" style="background:#ffffff18;color:#fff;border-color:#ffffff30" data-i18n="cta.eyebrow">Ваш первый шаг</span>
+    <span class="eyebrow floating-badge" style="background:#ffffff18;color:#fff;border-color:#ffffff30" data-i18n="cta.eyebrow">Ваш первый шаг</span>
     <h2 data-i18n="cta.title">Давайте подберем<br>правильный курс.</h2>
     <p data-i18n="cta.desc">Расскажите немного о себе, и наша команда поможет выбрать оптимальный путь.</p>
-    <a class="btn" href="#contact" data-i18n="cta.btn">Записаться на курс ↗</a>
+    <a class="btn pulse-button" href="#contact" data-i18n="cta.btn">Записаться на курс ↗</a>
    </div>
-   <div style="font-size:100px;text-align:center;opacity:.9">✦</div>
+   <div class="infinite-spin-slow" style="font-size:100px;text-align:center;">✨</div>
   </div>
  </div>
 </section>
 
-<section id="faq" class="reveal-block">
+<section id="faq" class="reveal-block slide-in-left">
  <div class="container faq">
   <div>
-   <span class="eyebrow" data-i18n="faq.eyebrow">Полезно знать</span>
+   <span class="eyebrow floating-badge" data-i18n="faq.eyebrow">Полезно знать</span>
    <h2 data-i18n="faq.title">Остались вопросы?<br>Мы на связи.</h2>
    <p style="color:var(--muted)" data-i18n="faq.desc">Несколько ответов, которые помогут вам сделать первый шаг.</p>
   </div>
   <div class="faq-list">
-   <details><summary data-i18n="faq.1.q">Как выбрать подходящий курс?</summary><p data-i18n="faq.1.a">Расскажите нам о ваших целях и текущем уровне, и команда подберет идеальную программу.</p></details>
-   <details><summary data-i18n="faq.2.q">Нужно ли знать английский до начала занятий?</summary><p data-i18n="faq.2.a">Нет. Есть группы для начинающих с нуля. Просто укажите ваш опыт при регистрации.</p></details>
-   <details><summary data-i18n="faq.3.q">Можно ли подготовиться к IELTS?</summary><p data-i18n="faq.3.a">Да, у нас есть специализированная программа подготовки к экзамену IELTS.</p></details>
-   <details><summary data-i18n="faq.4.q">Как зарегистрироваться?</summary><p data-i18n="faq.4.a">Заполните форму ниже. Заявка мгновенно поступит на наш безопасный сервер и будет отправлена администраторам.</p></details>
+   <details class="faq-accordion"><summary data-i18n="faq.1.q">Как выбрать подходящий курс?</summary><p data-i18n="faq.1.a">Расскажите нам о ваших целях и текущем уровне, и команда подберет идеальную программу.</p></details>
+   <details class="faq-accordion"><summary data-i18n="faq.2.q">Нужно ли знать английский до начала занятий?</summary><p data-i18n="faq.2.a">Нет. Есть группы для начинающих с нуля. Просто укажите ваш опыт при регистрации.</p></details>
+   <details class="faq-accordion"><summary data-i18n="faq.3.q">Можно ли подготовиться к IELTS?</summary><p data-i18n="faq.3.a">Да, у нас есть специализированная программа подготовки к экзамену IELTS.</p></details>
+   <details class="faq-accordion"><summary data-i18n="faq.4.q">Как зарегистрироваться?</summary><p data-i18n="faq.4.a">Заполните форму ниже. Заявка мгновенно поступит на наш безопасный сервер и будет отправлена администраторам.</p></details>
   </div>
  </div>
 </section>
 
-<section class="contact reveal-block" id="contact">
+<section class="contact reveal-block slide-in-right" id="contact">
  <div class="container">
   <div class="section-head">
    <div>
-    <span class="eyebrow" data-i18n="contact.eyebrow">Контакты</span>
+    <span class="eyebrow floating-badge" data-i18n="contact.eyebrow">Контакты</span>
     <h2 data-i18n="contact.title">Начнем с простого<br>приветствия.</h2>
    </div>
    <p data-i18n="contact.desc">Оставьте свои данные и расскажите, что вы ищете. Мы поможем выбрать лучшее решение.</p>
   </div>
   <div class="contact-grid">
-   <div class="contact-info">
+   <div class="contact-info glassmorphism">
     <h3>Fast and Easy</h3>
     <p data-i18n="contact.subtitle">Языковой центр английского языка</p>
     <div class="info-line">📍 <b data-i18n="contact.locLabel">Адрес:</b> <span data-i18n="contact.locVal">Ташкент, ул. Навои, 12</span></div>
     <div class="info-line">☎️ <b data-i18n="contact.phoneLabel">Телефон:</b> +998 (90) 123-45-67</div>
     <div class="info-line">✉️ <b data-i18n="contact.emailLabel">Email:</b> info@fastandeasy.uz</div>
     <div class="info-line">🕒 <b data-i18n="contact.hoursLabel">Часы работы:</b> <span data-i18n="contact.hoursVal">Пн-Сб: 9:00 - 20:00</span></div>
-    <p style="font-size:12px;margin-top:20px" data-i18n="contact.note">Обновите эти данные перед публикацией.</p>
    </div>
-   <form id="registerForm">
+   <form id="registerForm" class="glow-on-hover">
     <div class="form-grid">
      <div><label for="name" data-i18n="form.nameLabel">ФИО</label><input id="name" name="name" required placeholder="Ваше имя" data-i18n-placeholder="form.namePlace"></div>
      <div><label for="phone" data-i18n="form.phoneLabel">НОМЕР ТЕЛЕФОНА</label><input id="phone" name="phone" required type="tel" placeholder="+998 __ ___ __ __"></div>
@@ -278,7 +278,7 @@
       <textarea id="message" name="message" rows="3" placeholder="Расскажите, чего вы хотите достичь..." data-i18n-placeholder="form.goalPlace"></textarea>
      </div>
      <div class="full">
-      <button class="btn btn-blue" type="submit" style="width:100%" data-i18n="form.submitBtn">Отправить заявку ↗</button>
+      <button class="btn btn-blue pulse-button" type="submit" style="width:100%" data-i18n="form.submitBtn">Отправить заявку ↗</button>
       <div id="formMsg" class="form-msg"></div>
      </div>
     </div>
@@ -290,7 +290,7 @@
 
 <footer>
  <div class="container footer-row">
-  <a class="logo" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:var(--gold)">&</span> EASY</span></a>
+  <a class="logo spin-on-hover" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:var(--gold)">&</span> EASY</span></a>
   <span class="footer-muted">© <span id="year"></span> Fast and Easy. <span data-i18n="footer.concept">Концепт сайта языкового центра.</span></span>
   <div class="footer-links">
    <a href="#courses" data-i18n="nav.courses">Курсы</a>
@@ -303,10 +303,11 @@
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// ПОЛНЫЙ СЛОВАРЬ ПЕРЕВОДОВ НА 3 ЯЗЫКА
 const translations = {
   ru: {
     "nav.courses": "Курсы", "nav.about": "О нас", "nav.teachers": "Преподаватели", "nav.faq": "FAQ", "nav.contact": "Контакты", "nav.cta": "Записаться ↗",
-    "hero.eyebrow": "✦ Языковой центр английского языка", "hero.title": "Английский открывает<br><span>новые возможности.</span>", "hero.desc": "Уверенно общайтесь, развивайте навыки и двигайтесь к своим целям по индивидуальной программе обучения.", "hero.btnMain": "Подобрать курс ↗", "hero.btnSec": "Программы обучения", "hero.note": "Дружелюбные преподаватели · Практика с первого дня · Поддержка на каждом этапе", "hero.artLabel": "ВАШ НОВЫЙ ЭТАП НАЧИНАЕТСЯ ЗДЕСЬ", "hero.cardTitle": "Готовы заговорить по-английски?", "hero.cardDesc": "Начните с комфортного уровня. Развивайтесь в своем темпе.", "hero.mini1": "Узнать уровень", "hero.mini2": "Выбрать курс", "hero.mini3": "Начать обучение", "hero.pill": "Давайте сделаем это ✨",
+    "hero.eyebrow": "✦ Языковой центр английского языка", "hero.title": "Английский открывает<br><span>новые возможности.</span>", "hero.desc": "Уверенно общайтесь, развивайте навыки и двигайтесь к своим целям по индивидуальной программе обучения.", "hero.btnMain": "Подобрать курс ↗", "hero.btnSec": "Программы обучения", "hero.note": "Дружелюбные преподаватели · Практика с первого дня · Поддержка на каждом этапе", "hero.artLabel": "⚙️ ВАШ НОВЫЙ ЭТАП НАЧИНАЕТСЯ ЗДЕСЬ", "hero.cardTitle": "Готовы заговорить по-английски?", "hero.cardDesc": "Начните с комфортного уровня. Развивайтесь в своем темпе.", "hero.mini1": "Узнать уровень", "hero.mini2": "Выбрать курс", "hero.mini3": "Начать обучение", "hero.pill": "Давайте сделаем это ✨",
     "stats.1.title": "Индивидуально", "stats.1.desc": "Подход к обучению", "stats.2.title": "Практика", "stats.2.desc": "Живой английский", "stats.3.title": "Поддержка", "stats.3.desc": "С первого занятия", "stats.4.title": "Ваш темп", "stats.4.desc": "Удобный ритм",
     "courses.eyebrow": "Выберите свой путь", "courses.title": "Курсы для вашего<br>главного шага.", "courses.desc": "Начните с нуля или подготовьтесь к экзамену — выберите программу под свои цели.",
     "course.1.tag": "С НУЛЯ", "course.1.name": "Общий английский", "course.1.desc": "Развивайте словарный запас, грамматику, разговорную речь, аудирование и письмо для реальной жизни.", "course.1.level": "Начинающий → Продвинутый",
@@ -331,7 +332,7 @@ const translations = {
     "faq.3.q": "Можно ли подготовиться к IELTS?", "faq.3.a": "Да, у нас есть специализированная программа подготовки к экзамену IELTS.",
     "faq.4.q": "Как зарегистрироваться?", "faq.4.a": "Заполните форму ниже. Заявка мгновенно поступит на наш безопасный сервер.",
     "contact.eyebrow": "Контакты", "contact.title": "Начнем с простого<br>приветствия.", "contact.desc": "Оставьте свои данные и расскажите, что вы ищете.",
-    "contact.subtitle": "Языковой центр английского языка", "contact.locLabel": "Адрес:", "contact.locVal": "Ташкент, ул. Навои, 12", "contact.phoneLabel": "Телефон:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Часы работы:", "contact.hoursVal": "Пн-Сб: 9:00 - 20:00", "contact.note": "Обновите эти данные перед публикацией.",
+    "contact.subtitle": "Языковой центр английского языка", "contact.locLabel": "Адрес:", "contact.locVal": "Ташкент, ул. Навои, 12", "contact.phoneLabel": "Телефон:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Часы работы:", "contact.hoursVal": "Пн-Сб: 9:00 - 20:00",
     "form.nameLabel": "ФИО", "form.namePlace": "Ваше имя", "form.phoneLabel": "НОМЕР ТЕЛЕФОНА", "form.courseLabel": "КУРС",
     "form.optGen": "Общий английский (General English)", "form.optIelts": "Подготовка к IELTS", "form.optSpeak": "Разговорный клуб", "form.optUnsure": "Еще не уверен(а)",
     "form.levelLabel": "ТЕКУЩИЙ УРОВЕНЬ", "form.lvl1": "Пока не знаю / С нуля",
@@ -340,7 +341,7 @@ const translations = {
   },
   uz: {
     "nav.courses": "Kurslar", "nav.about": "Biz haqimizda", "nav.teachers": "O'qituvchilar", "nav.faq": "FAQ", "nav.contact": "Aloqa", "nav.cta": "Ro'yxatdan o'tish ↗",
-    "hero.eyebrow": "✦ Ingliz tili o'quv markazi", "hero.title": "Ingliz tili yangi<br><span>eshiklarni ochadi.</span>", "hero.desc": "O'zingizga bo'lgan ishonchni oshiring, erkin muloqot qiling va shaxsiy ta'lim dasturi bilan maqsadingizga erishing.", "hero.btnMain": "Kursni tanlash ↗", "hero.btnSec": "Dasturlarni ko'rish", "hero.note": "Tajribali o'qituvchilar · Amaliy ta'lim · Har qadamda yordam", "hero.artLabel": "SIZNING YANGI BOSQICHINGIZ SHU YERDAN BOSHLANADI", "hero.cardTitle": "Ingliz tilida gaplashishga tayyormisiz?", "hero.cardDesc": "Darajangizdan boshlang. O'z sur'atingizda o'siring.", "hero.mini1": "Darajani aniqlash", "hero.mini2": "Kursni tanlash", "hero.mini3": "Natijaga erishish", "hero.pill": "Buni amalga oshiramiz ✨",
+    "hero.eyebrow": "✦ Ingliz tili o'quv markazi", "hero.title": "Ingliz tili yangi<br><span>eshiklarni ochadi.</span>", "hero.desc": "O'zingizga bo'lgan ishonchni oshiring, erkin muloqot qiling va shaxsiy ta'lim dasturi bilan maqsadingizga erishing.", "hero.btnMain": "Kursni tanlash ↗", "hero.btnSec": "Dasturlarni ko'rish", "hero.note": "Tajribali o'qituvchilar · Amaliy ta'lim · Har qadamda yordam", "hero.artLabel": "⚙️ SIZNING YANGI BOSQICHINGIZ SHU YERDAN BOSHLANADI", "hero.cardTitle": "Ingliz tilida gaplashishga tayyormisiz?", "hero.cardDesc": "Darajangizdan boshlang. O'z sur'atingizda o'siring.", "hero.mini1": "Darajani aniqlash", "hero.mini2": "Kursni tanlash", "hero.mini3": "Natijaga erishish", "hero.pill": "Buni amalga oshiramiz ✨",
     "stats.1.title": "Shaxsiy", "stats.1.desc": "Ta'lim yondashuvi", "stats.2.title": "Amaliy", "stats.2.desc": "Kundalik ingliz tili", "stats.3.title": "Yordam", "stats.3.desc": "Birinchi darsdan boshlab", "stats.4.title": "O'z sur'atingiz", "stats.4.desc": "Sizning yo'lingiz",
     "courses.eyebrow": "Yo'nalishni tanlang", "courses.title": "Sizning muhim<br>qadamingiz uchun kurslar.", "courses.desc": "Noldan boshlayapsizmi yoki imtihonga tayyorgarlik ko'ryapsizmi, o'z maqsadingizga mos dasturni toping.",
     "course.1.tag": "NOLDAN", "course.1.name": "Umumiy ingliz tili", "course.1.desc": "Haqiqiy hayot uchun so'z boyligi, grammatika, so'zlashuv va tinglab tushunish ko'nikmalarini rivojlantiring.", "course.1.level": "Boshlang'ich → Yuqori",
@@ -365,22 +366,16 @@ const translations = {
     "faq.3.q": "IELTS ga tayyorgarlik ko'rsa bo'ladimi?", "faq.3.a": "Ha, bizda maxsus IELTS tayyorgarlik dasturi mavjud.",
     "faq.4.q": "Qanday ro'yxatdan o'tiladi?", "faq.4.a": "Quyidagi shaklni to'ldiring. Ariza xavfsiz serverimizga kelib tushadi.",
     "contact.eyebrow": "Aloqa", "contact.title": "Oddiy salomlashishdan<br>boshlaymiz.", "contact.desc": "Ma'lumotlaringizni qoldiring va nima qidirayotganingizni yozing.",
-    "contact.subtitle": "Ingliz tili o'quv markazi", "contact.locLabel": "Manzil:", "contact.locVal": "Toshkent, Navoiy ko'chasi, 12", "contact.phoneLabel": "Telefon:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Ish vaqti:", "contact.hoursVal": "Dush-Shan: 9:00 - 20:00", "contact.note": "E'lon qilishdan oldin ushbu ma'lumotlarni yangilang.",
+    "contact.subtitle": "Ingliz tili o'quv markazi", "contact.locLabel": "Manzil:", "contact.locVal": "Toshkent, Navoiy ko'chasi, 12", "contact.phoneLabel": "Telefon:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Ish vaqti:", "contact.hoursVal": "Dush-Shan: 9:00 - 20:00",
     "form.nameLabel": "F.I.O.", "form.namePlace": "Ismingiz", "form.phoneLabel": "TELEFON RAQAMI", "form.courseLabel": "KURSLAR",
-    "form.optGen": "Umumiy ingliz tili (General English)",
-    "form.optIelts": "IELTS ga tayyorgarlik",
-    "form.optSpeak": "So'zlashuv klubi",
-    "form.optUnsure": "Hali aniq emas",
-    "form.levelLabel": "JORIY DARAJA",
-    "form.lvl1": "Hali bilmayman / Noldan",
-    "form.goalLabel": "MAQSADINGIZ (Ixtiyoriy)",
-    "form.goalPlace": "Nimaga erishmoqchisiz...",
-    "form.submitBtn": "Arizani yuborish ↗",
-    "footer.concept": "O'quv markazi veb-sayt konsepsiyasi."
+    "form.optGen": "Umumiy ingliz tili (General English)", "form.optIelts": "IELTS ga tayyorgarlik", "form.optSpeak": "So'zlashuv klubi", "form.optUnsure": "Hali aniq emas",
+    "form.levelLabel": "JORIY DARAJA", "form.lvl1": "Hali bilmayman / Noldan",
+    "form.goalLabel": "MAQSADINGIZ (Ixtiyoriy)", "form.goalPlace": "Nimaga erishmoqchisiz...",
+    "form.submitBtn": "Arizani yuborish ↗", "footer.concept": "O'quv markazi veb-sayt konsepsiyasi."
   },
   en: {
     "nav.courses": "Courses", "nav.about": "About", "nav.teachers": "Teachers", "nav.faq": "FAQ", "nav.contact": "Contact", "nav.cta": "Enroll ↗",
-    "hero.eyebrow": "✦ English Language Center", "hero.title": "English opens up<br><span>new opportunities.</span>", "hero.desc": "Communicate with confidence, build skills, and achieve your goals with a personalized learning program.", "hero.btnMain": "Find a course ↗", "hero.btnSec": "Learning programs", "hero.note": "Friendly teachers · Practice from day one · Support at every step", "hero.artLabel": "YOUR NEW CHAPTER STARTS HERE", "hero.cardTitle": "Ready to speak English?", "hero.cardDesc": "Start at a comfortable level. Grow at your own pace.", "hero.mini1": "Check level", "hero.mini2": "Pick course", "hero.mini3": "Start learning", "hero.pill": "Let's do this ✨",
+    "hero.eyebrow": "✦ English Language Center", "hero.title": "English opens up<br><span>new opportunities.</span>", "hero.desc": "Communicate with confidence, build skills, and achieve your goals with a personalized learning program.", "hero.btnMain": "Find a course ↗", "hero.btnSec": "Learning programs", "hero.note": "Friendly teachers · Practice from day one · Support at every step", "hero.artLabel": "⚙️ YOUR NEW CHAPTER STARTS HERE", "hero.cardTitle": "Ready to speak English?", "hero.cardDesc": "Start at a comfortable level. Grow at your own pace.", "hero.mini1": "Check level", "hero.mini2": "Pick course", "hero.mini3": "Start learning", "hero.pill": "Let's do this ✨",
     "stats.1.title": "Individual", "stats.1.desc": "Approach to learning", "stats.2.title": "Practice", "stats.2.desc": "Live English", "stats.3.title": "Support", "stats.3.desc": "From day one", "stats.4.title": "Your pace", "stats.4.desc": "Comfortable rhythm",
     "courses.eyebrow": "Choose your path", "courses.title": "Courses for your<br>main step.", "courses.desc": "Start from scratch or prepare for an exam — choose the program for your goals.",
     "course.1.tag": "FROM SCRATCH", "course.1.name": "General English", "course.1.desc": "Build vocabulary, grammar, speaking, listening, and writing skills for real life.", "course.1.level": "Beginner → Advanced",
@@ -405,7 +400,7 @@ const translations = {
     "faq.3.q": "Can I prepare for IELTS?", "faq.3.a": "Yes, we have a specialized IELTS exam preparation program.",
     "faq.4.q": "How to register?", "faq.4.a": "Fill out the form below. The application will instantly go to our secure server.",
     "contact.eyebrow": "Contacts", "contact.title": "Let's start with a simple<br>greeting.", "contact.desc": "Leave your details and tell us what you are looking for.",
-    "contact.subtitle": "English Language Center", "contact.locLabel": "Address:", "contact.locVal": "Tashkent, Navoi str., 12", "contact.phoneLabel": "Phone:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Hours:", "contact.hoursVal": "Mon-Sat: 9:00 - 20:00", "contact.note": "Update these details before publishing.",
+    "contact.subtitle": "English Language Center", "contact.locLabel": "Address:", "contact.locVal": "Tashkent, Navoi str., 12", "contact.phoneLabel": "Phone:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Hours:", "contact.hoursVal": "Mon-Sat: 9:00 - 20:00",
     "form.nameLabel": "FULL NAME", "form.namePlace": "Your name", "form.phoneLabel": "PHONE NUMBER", "form.courseLabel": "COURSE",
     "form.optGen": "General English", "form.optIelts": "IELTS Preparation", "form.optSpeak": "Speaking Club", "form.optUnsure": "Not sure yet",
     "form.levelLabel": "CURRENT LEVEL", "form.lvl1": "Not sure / From scratch",
@@ -431,7 +426,75 @@ const savedLang = localStorage.getItem('preferredLang') || 'ru';
 document.getElementById('langSelect').value = savedLang;
 setLanguage(savedLang);
 
-// Анимация блоков при скролле
+// Скрипт частиц огня для лопания иконок
+const canvas = document.getElementById('fireCanvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+let particles = [];
+function createFireParticles(x, y) {
+    for (let i = 0; i < 45; i++) {
+        particles.push({
+            x: x, y: y,
+            vx: (Math.random() - 0.5) * 8,
+            vy: (Math.random() - 0.5) * 8 - 2,
+            size: Math.random() * 12 + 4,
+            color: `hsl(${Math.random() * 40 + 10}, 100%, 50%)`,
+            life: 1
+        });
+    }
+}
+
+function animateFire() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, index) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.03;
+        p.size *= 0.95;
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0, p.life);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        if (p.life <= 0) particles.splice(index, 1);
+    });
+    requestAnimationFrame(animateFire);
+}
+animateFire();
+
+const popContainer = document.getElementById('popIcons');
+for (let i = 0; i < 5; i++) {
+    spawnPopIcon(i);
+}
+
+function spawnPopIcon(index) {
+    const icon = document.createElement('div');
+    icon.className = `pop-fne-icon icon-anim-${(index % 3) + 1}`;
+    icon.innerHTML = `<img src="IMG_20261026_094149_960.jpg" alt="FnE"><span>FnE</span>`;
+    icon.style.top = Math.random() * 80 + 10 + 'vh';
+    icon.style.left = Math.random() * 80 + 10 + 'vw';
+    
+    icon.addEventListener('click', (e) => {
+        const rect = icon.getBoundingClientRect();
+        createFireParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        icon.classList.add('popped');
+        setTimeout(() => {
+            icon.remove();
+            spawnPopIcon(index);
+        }, 2500);
+    });
+    popContainer.appendChild(icon);
+}
+
+window.addEventListener('scroll', () => {
+    const scrollCar = document.getElementById('scrollCar');
+    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    scrollCar.style.right = scrollPercent + '%';
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
     const observer = new IntersectionObserver((entries, observer) => {
@@ -442,10 +505,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.reveal-block').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal-block, .card-flip-in, .slide-in-left, .slide-in-right').forEach(el => observer.observe(el));
 });
 
-// Отправка формы на сервер
+// Отправка формы на бэкенд
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const formData = {
