@@ -8,12 +8,6 @@
 </head>
 <body>
 
-<!-- ИНТЕРАКТИВНЫЙ РОБОТ-ПОМОЩНИК -->
-<div id="fne-bot">
-  <div class="bot-dialog" id="botText">Привет! Я собираю сайт для тебя ✨</div>
-  <div class="bot-avatar">🤖</div>
-</div>
-
 <header>
   <div class="container nav">
     <a class="logo" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:#3766c7">&</span> EASY</span></a>
@@ -143,41 +137,42 @@
  </div>
 </section>
 
-<!-- Блок с преподавателями -->
-<section id="teachers" class="reveal-block" style="background:#fff">
- <div class="container">
-  <div class="section-head">
-   <div>
-    <span class="eyebrow" data-i18n="teachers.eyebrow">Наша команда</span>
-    <h2 data-i18n="teachers.title">Люди, которые помогают<br>вам двигаться вперед.</h2>
-   </div>
-   <p data-i18n="teachers.desc">Наши преподаватели направляют, вдохновляют и поддерживают вас на протяжении всей учебы.</p>
+<!-- Блок с преподавателями и роботом-доставщиком -->
+<section id="teachers" class="reveal-block delivery-section" style="background:#fff">
+  <div class="delivery-robot" id="robotDelivery">🤖📦</div>
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow" data-i18n="teachers.eyebrow">Наша команда</span>
+        <h2 data-i18n="teachers.title">Люди, которые помогают<br>вам двигаться вперед.</h2>
+      </div>
+      <p data-i18n="teachers.desc">Наши преподаватели направляют, вдохновляют и поддерживают вас на протяжении всей учебы.</p>
+    </div>
+    <div class="teacher-grid">
+      <article class="teacher"><div class="avatar">👩‍🏫</div><h3 data-i18n="teachers.1.name">Преподаватель</h3><p data-i18n="teachers.1.desc">Общий английский · Базовый уровень</p></article>
+      <article class="teacher"><div class="avatar">👨‍🏫</div><h3 data-i18n="teachers.2.name">Преподаватель</h3><p data-i18n="teachers.2.desc">Разговорные клубы · Практика речи</p></article>
+      <article class="teacher"><div class="avatar">👩🏻‍🏫</div><h3 data-i18n="teachers.3.name">Преподаватель</h3><p data-i18n="teachers.3.desc">IELTS · Экзаменационная подготовка</p></article>
+    </div>
+    <p class="footer-muted" style="margin-top:14px" data-i18n="teachers.note">Замените эти образцы профилей на реальных преподавателей и фотографии.</p>
   </div>
-  <div class="teacher-grid">
-   <article class="teacher"><div class="avatar">👩‍🏫</div><h3 data-i18n="teachers.1.name">Преподаватель</h3><p data-i18n="teachers.1.desc">Общий английский · Базовый уровень</p></article>
-   <article class="teacher"><div class="avatar">👨‍🏫</div><h3 data-i18n="teachers.2.name">Преподаватель</h3><p data-i18n="teachers.2.desc">Разговорные клубы · Практика речи</p></article>
-   <article class="teacher"><div class="avatar">👩🏻‍🏫</div><h3 data-i18n="teachers.3.name">Преподаватель</h3><p data-i18n="teachers.3.desc">IELTS · Экзаменационная подготовка</p></article>
-  </div>
-  <p class="footer-muted" style="margin-top:14px" data-i18n="teachers.note">Замените эти образцы профилей на реальных преподавателей и фотографии.</p>
- </div>
 </section>
 
-<!-- Блок с сертификатами -->
+<!-- Блок с сертификатами, которые робот сбрасывает вниз -->
 <section class="reveal-block">
- <div class="container">
-  <div class="section-head">
-   <div>
-    <span class="eyebrow">Доверие и качество</span>
-    <h2>Наши сертификаты<br>и достижения.</h2>
-   </div>
-   <p>Официальные лицензии и подтверждения стандартов нашего обучения.</p>
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Доверие и качество</span>
+        <h2>Наши сертификаты<br>и достижения.</h2>
+      </div>
+      <p>Официальные лицензии и подтверждения стандартов нашего обучения.</p>
+    </div>
+    <div class="cards">
+      <article class="course drop-cert" id="cert1"><div class="course-top"><span class="course-icon">📜</span><span class="tag">ЛИЦЕНЗИЯ</span></div><h3>Лицензия МинОбра</h3><p>Официальное разрешение на осуществление образовательной деятельности.</p></article>
+      <article class="course drop-cert" id="cert2"><div class="course-top"><span class="course-icon">🏆</span><span class="tag">СТАНДАРТ</span></div><h3>Международный стандарт</h3><p>Методика обучения соответствует мировым стандартам качества.</p></article>
+      <article class="course drop-cert" id="cert3"><div class="course-top"><span class="course-icon">⭐</span><span class="tag">РЕЙТИНГ</span></div><h3>Лучший центр года</h3><p>Высокие оценки от студентов и независимых платформ.</p></article>
+    </div>
   </div>
-  <div class="cards">
-   <article class="course"><div class="course-top"><span class="course-icon">📜</span><span class="tag">ЛИЦЕНЗИЯ</span></div><h3>Лицензия МинОбра</h3><p>Официальное разрешение на осуществление образовательной деятельности.</p></article>
-   <article class="course"><div class="course-top"><span class="course-icon">🏆</span><span class="tag">СТАНДАРТ</span></div><h3>Международный стандарт</h3><p>Методика обучения соответствует мировым стандартам качества.</p></article>
-   <article class="course"><div class="course-top"><span class="course-icon">⭐</span><span class="tag">РЕЙТИНГ</span></div><h3>Лучший центр года</h3><p>Высокие оценки от студентов и независимых платформ.</p></article>
-  </div>
- </div>
 </section>
 
 <!-- Блок со зданием -->
@@ -302,7 +297,6 @@
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Словарь переводов
 const translations = {
   ru: {
     "nav.courses": "Курсы", "nav.about": "О нас", "nav.teachers": "Преподаватели", "nav.faq": "FAQ", "nav.contact": "Контакты", "nav.cta": "Записаться ↗",
@@ -425,41 +419,59 @@ const savedLang = localStorage.getItem('preferredLang') || 'ru';
 document.getElementById('langSelect').value = savedLang;
 setLanguage(savedLang);
 
-// Интерактивный робот и анимация блоков при скролле
+// Анимации блоков при скролле и робот-доставщик сертификатов
 document.addEventListener("DOMContentLoaded", function() {
-    const bot = document.getElementById('fne-bot');
-    const botText = document.getElementById('botText');
-    
-    // Показываем робота через 1.5 секунды после загрузки
-    setTimeout(() => {
-        bot.classList.add('show');
-    }, 1500);
-
-    const botMessages = [
-        "Привет! Я робот-помощник FnE 🤖",
-        "Смотри, я оживляю этот блок для тебя! ✨",
-        "Здесь всё плавает и переливается 🌊",
-        "Заполни форму ниже, я отправлю её в Telegram! 🚀"
+    const robot = document.getElementById('robotDelivery');
+    const certs = [
+        document.getElementById('cert1'),
+        document.getElementById('cert2'),
+        document.getElementById('cert3')
     ];
-    let msgIndex = 0;
 
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+    
+    // Общий наблюдатель для анимации всех блоков
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                
-                // Робот «комментирует» появление блока
-                msgIndex = (msgIndex + 1) % botMessages.length;
-                botText.textContent = botMessages[msgIndex];
             }
         });
     }, observerOptions);
 
     document.querySelectorAll('.reveal-block').forEach(el => observer.observe(el));
+
+    // Наблюдатель для робота-доставщика на блоке учителей
+    const deliveryObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 1. Робот выезжает на экран
+                robot.classList.add('active');
+                
+                // 2. Робот "сбрасывает" сертификаты вниз с задержкой
+                setTimeout(() => {
+                    certs.forEach((cert, index) => {
+                        setTimeout(() => {
+                            cert.classList.add('dropped');
+                            setTimeout(() => {
+                                cert.classList.add('impact');
+                            }, 400);
+                        }, index * 300);
+                    });
+                }, 600);
+
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { root: null, rootMargin: '0px', threshold: 0.3 });
+
+    const teachersSection = document.getElementById('teachers');
+    if (teachersSection) {
+        deliveryObserver.observe(teachersSection);
+    }
 });
 
-// Отправка формы
+// Отправка формы на сервер
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const formData = {
@@ -482,7 +494,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         msgDiv.style.display = 'block';
         if (data.success) {
             msgDiv.style.color = '#1b8650';
-            msgDiv.textContent = 'Робот успешно отправил заявку в Telegram! 🎉';
+            msgDiv.textContent = 'Заявка успешно отправлена в Telegram! 🎉';
             this.reset();
         } else {
             msgDiv.style.color = '#d93838';
