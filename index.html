@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<!-- Летающая ракета с вашим логотипом -->
+<div class="flying-rocket">
+    <span class="rocket-icon">🚀</span>
+    <img src="IMG_20261026_094149_960.jpg" alt="FnE Logo" class="rocket-logo-img">
+    <span class="rocket-text">Fast & Easy</span>
+</div>
+
 <header>
   <div class="container nav">
     <a class="logo" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:#3766c7">&</span> EASY</span></a>
@@ -137,9 +144,8 @@
  </div>
 </section>
 
-<!-- Блок с преподавателями и роботом-доставщиком -->
-<section id="teachers" class="reveal-block delivery-section" style="background:#fff">
-  <div class="delivery-robot" id="robotDelivery">🤖📦</div>
+<!-- Блок с преподавателями -->
+<section id="teachers" class="reveal-block" style="background:#fff">
   <div class="container">
     <div class="section-head">
       <div>
@@ -157,7 +163,7 @@
   </div>
 </section>
 
-<!-- Блок с сертификатами, которые робот сбрасывает вниз -->
+<!-- Блок с сертификатами -->
 <section class="reveal-block">
   <div class="container">
     <div class="section-head">
@@ -168,9 +174,9 @@
       <p>Официальные лицензии и подтверждения стандартов нашего обучения.</p>
     </div>
     <div class="cards">
-      <article class="course drop-cert" id="cert1"><div class="course-top"><span class="course-icon">📜</span><span class="tag">ЛИЦЕНЗИЯ</span></div><h3>Лицензия МинОбра</h3><p>Официальное разрешение на осуществление образовательной деятельности.</p></article>
-      <article class="course drop-cert" id="cert2"><div class="course-top"><span class="course-icon">🏆</span><span class="tag">СТАНДАРТ</span></div><h3>Международный стандарт</h3><p>Методика обучения соответствует мировым стандартам качества.</p></article>
-      <article class="course drop-cert" id="cert3"><div class="course-top"><span class="course-icon">⭐</span><span class="tag">РЕЙТИНГ</span></div><h3>Лучший центр года</h3><p>Высокие оценки от студентов и независимых платформ.</p></article>
+      <article class="course"><div class="course-top"><span class="course-icon">📜</span><span class="tag">ЛИЦЕНЗИЯ</span></div><h3>Лицензия МинОбра</h3><p>Официальное разрешение на осуществление образовательной деятельности.</p></article>
+      <article class="course"><div class="course-top"><span class="course-icon">🏆</span><span class="tag">СТАНДАРТ</span></div><h3>Международный стандарт</h3><p>Методика обучения соответствует мировым стандартам качества.</p></article>
+      <article class="course"><div class="course-top"><span class="course-icon">⭐</span><span class="tag">РЕЙТИНГ</span></div><h3>Лучший центр года</h3><p>Высокие оценки от студентов и независимых платформ.</p></article>
     </div>
   </div>
 </section>
@@ -361,10 +367,16 @@ const translations = {
     "contact.eyebrow": "Aloqa", "contact.title": "Oddiy salomlashishdan<br>boshlaymiz.", "contact.desc": "Ma'lumotlaringizni qoldiring va nima qidirayotganingizni yozing.",
     "contact.subtitle": "Ingliz tili o'quv markazi", "contact.locLabel": "Manzil:", "contact.locVal": "Toshkent, Navoiy ko'chasi, 12", "contact.phoneLabel": "Telefon:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Ish vaqti:", "contact.hoursVal": "Dush-Shan: 9:00 - 20:00", "contact.note": "E'lon qilishdan oldin ushbu ma'lumotlarni yangilang.",
     "form.nameLabel": "F.I.O.", "form.namePlace": "Ismingiz", "form.phoneLabel": "TELEFON RAQAMI", "form.courseLabel": "KURSLAR",
-    "form.optGen": "Umumiy ingliz tili (General English)", "form.optIelts": "IELTS ga tayyorgarlik", "form.optSpeak": "So'zlashuv klubi", "form.optUnsure": "Hali aniq emas",
-    "form.levelLabel": "JORIY DARAJA", "form.lvl1": "Hali bilmayman / Noldan",
-    "form.goalLabel": "MAQSADINGIZ (Ixtiyoriy)", "form.goalPlace": "Nimaga erishmoqchisiz...",
-    "form.submitBtn": "Arizani yuborish ↗", "footer.concept": "O'quv markazi veb-sayt konsepsiyasi."
+    "form.optGen": "Umumiy ingliz tili (General English)",
+    "form.optIelts": "IELTS ga tayyorgarlik",
+    "form.optSpeak": "So'zlashuv klubi",
+    "form.optUnsure": "Hali aniq emas",
+    "form.levelLabel": "JORIY DARAJA",
+    "form.lvl1": "Hali bilmayman / Noldan",
+    "form.goalLabel": "MAQSADINGIZ (Ixtiyoriy)",
+    "form.goalPlace": "Nimaga erishmoqchisiz...",
+    "form.submitBtn": "Arizani yuborish ↗",
+    "footer.concept": "O'quv markazi veb-sayt konsepsiyasi."
   },
   en: {
     "nav.courses": "Courses", "nav.about": "About", "nav.teachers": "Teachers", "nav.faq": "FAQ", "nav.contact": "Contact", "nav.cta": "Enroll ↗",
@@ -419,18 +431,9 @@ const savedLang = localStorage.getItem('preferredLang') || 'ru';
 document.getElementById('langSelect').value = savedLang;
 setLanguage(savedLang);
 
-// Анимации блоков при скролле и робот-доставщик сертификатов
+// Анимация блоков при скролле
 document.addEventListener("DOMContentLoaded", function() {
-    const robot = document.getElementById('robotDelivery');
-    const certs = [
-        document.getElementById('cert1'),
-        document.getElementById('cert2'),
-        document.getElementById('cert3')
-    ];
-
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-    
-    // Общий наблюдатель для анимации всех блоков
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -440,35 +443,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }, observerOptions);
 
     document.querySelectorAll('.reveal-block').forEach(el => observer.observe(el));
-
-    // Наблюдатель для робота-доставщика на блоке учителей
-    const deliveryObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // 1. Робот выезжает на экран
-                robot.classList.add('active');
-                
-                // 2. Робот "сбрасывает" сертификаты вниз с задержкой
-                setTimeout(() => {
-                    certs.forEach((cert, index) => {
-                        setTimeout(() => {
-                            cert.classList.add('dropped');
-                            setTimeout(() => {
-                                cert.classList.add('impact');
-                            }, 400);
-                        }, index * 300);
-                    });
-                }, 600);
-
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { root: null, rootMargin: '0px', threshold: 0.3 });
-
-    const teachersSection = document.getElementById('teachers');
-    if (teachersSection) {
-        deliveryObserver.observe(teachersSection);
-    }
 });
 
 // Отправка формы на сервер
