@@ -47,7 +47,7 @@ form{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28p
 footer{background:#111c31;color:#fff;padding:35px 0}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px}.footer-muted{color:#aab5c8;font-size:13px}.footer-links{display:flex;gap:18px;font-size:13px;color:#d8deea}
 
 /* ==========================================
-   АНИМАЦИИ БЛОКОВ И РОБОТА-ДОСТАВЩИКА
+   АНИМАЦИИ БЛОКОВ И ЛЕТАЮЩАЯ РАКЕТА С ЛОГОТИПОМ
    ========================================== */
 .reveal-block {
     opacity: 0;
@@ -59,44 +59,67 @@ footer{background:#111c31;color:#fff;padding:35px 0}.footer-row{display:flex;jus
     transform: translateY(0) scale(1);
 }
 
-.delivery-section {
-    position: relative;
-    overflow: hidden;
+.flying-rocket {
+    position: fixed;
+    z-index: 999;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 16px;
+    border-radius: 999px;
+    box-shadow: 0 15px 40px rgba(36, 75, 155, 0.35);
+    border: 2px solid var(--blue);
+    animation: flyAcross 14s ease-in-out infinite alternate;
 }
 
-.delivery-robot {
-    position: absolute;
-    top: 20px;
-    left: -100px;
-    font-size: 55px;
-    z-index: 10;
-    transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+.rocket-icon {
+    font-size: 26px;
+    animation: rocketShake 0.4s ease-in-out infinite alternate;
 }
 
-.delivery-robot.active {
-    transform: translateX(48vw) translateY(10px) rotate(10deg);
+.rocket-logo-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
 }
 
-.drop-cert {
-    opacity: 0;
-    transform: translateY(-150px) scale(0.8);
-    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.rocket-text {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--blue);
+    letter-spacing: 0.5px;
 }
 
-.drop-cert.dropped {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+@keyframes flyAcross {
+    0% {
+        top: 75vh;
+        left: -180px;
+        transform: rotate(15deg) scale(0.9);
+    }
+    35% {
+        top: 25vh;
+        left: 45vw;
+        transform: rotate(-10deg) scale(1.1);
+    }
+    70% {
+        top: 65vh;
+        left: 75vw;
+        transform: rotate(8deg) scale(1);
+    }
+    100% {
+        top: 15vh;
+        left: 105vw;
+        transform: rotate(-15deg) scale(0.95);
+    }
 }
 
-@keyframes snapImpact {
-    0% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(6px) scale(1.03); }
-    100% { transform: translateY(0) scale(1); }
-}
-
-.drop-cert.dropped.impact {
-    animation: snapImpact 0.4s ease;
+@keyframes rocketShake {
+    from { transform: translateY(0) rotate(0deg); }
+    to { transform: translateY(-4px) rotate(2deg); }
 }
 
 @media(max-width:850px){.navlinks{display:none}.menu{display:block}.hero-grid,.about-grid,.contact-grid,.faq,.cta{grid-template-columns:1fr}.hero{padding-top:40px}.hero-art{min-height:380px}.stats-grid{grid-template-columns:repeat(2,1fr);row-gap:20px}.stat:nth-child(2){border:0}.cards,.teacher-grid,.steps{grid-template-columns:1fr 1fr}.section-head{display:block}.section-head p{margin-top:12px}.faq{gap:20px}}
