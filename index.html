@@ -8,30 +8,40 @@
 </head>
 <body>
 
-<!-- Холст для спавна частиц огня при лопании иконок -->
+<!-- Холст для частичек огня -->
 <canvas id="fireCanvas"></canvas>
 
-<!-- 5 интерактивных летающих иконок (лопаются с огнем) -->
+<!-- Виджет монет -->
+<div class="coin-counter" id="coinCounter">
+    <span class="coin-icon">🪙</span>
+    <span id="coinScore">0</span>
+    <span class="coin-label">FnE Coins</span>
+</div>
+
+<!-- Контейнер летающих логотипов -->
 <div class="pop-icon-container" id="popIcons"></div>
 
-<!-- Летающая ракета с вашим логотипом -->
+<!-- Летающая ракета с логотипом -->
 <div class="flying-rocket">
     <span class="rocket-icon">🚀</span>
     <img src="IMG_20261026_094149_960.jpg" alt="FnE Logo" class="rocket-logo-img">
     <span class="rocket-text">Fast & Easy</span>
 </div>
 
-<!-- Анимированная машинка, проезжающая при скролле -->
+<!-- Проезжающая машинка -->
 <div class="scroll-car" id="scrollCar">
-    <span class="car-body">🚗💨</span>
-    <span class="car-text">Fast Learning!</span>
+    <span class="car-body">🏎️💨</span>
+    <span class="car-text">Fast & Easy Express!</span>
 </div>
 
-<!-- Фоновые анимированные волны -->
+<!-- Анимированные фоновые волны -->
 <div class="background-waves">
     <div class="wave wave1"></div>
     <div class="wave wave2"></div>
 </div>
+
+<!-- Основная оболочка сайта (исчезает в самом конце) -->
+<div id="mainSiteWrapper">
 
 <header>
   <div class="container nav">
@@ -179,7 +189,6 @@
       <article class="teacher card-3d-hover"><div class="avatar float-avatar">👨‍🏫</div><h3 data-i18n="teachers.2.name">Преподаватель</h3><p data-i18n="teachers.2.desc">Разговорные клубы · Практика речи</p></article>
       <article class="teacher card-3d-hover"><div class="avatar float-avatar">👩🏻‍🏫</div><h3 data-i18n="teachers.3.name">Преподаватель</h3><p data-i18n="teachers.3.desc">IELTS · Экзаменационная подготовка</p></article>
     </div>
-    <p class="footer-muted" style="margin-top:14px" data-i18n="teachers.note">Замените эти образцы профилей на реальных преподавателей и фотографии.</p>
   </div>
 </section>
 
@@ -292,18 +301,25 @@
  <div class="container footer-row">
   <a class="logo spin-on-hover" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:var(--gold)">&</span> EASY</span></a>
   <span class="footer-muted">© <span id="year"></span> Fast and Easy. <span data-i18n="footer.concept">Концепт сайта языкового центра.</span></span>
-  <div class="footer-links">
-   <a href="#courses" data-i18n="nav.courses">Курсы</a>
-   <a href="#about" data-i18n="nav.about">О нас</a>
-   <a href="#contact" data-i18n="nav.contact">Контакты</a>
-  </div>
  </div>
 </footer>
+
+</div> <!-- /mainSiteWrapper -->
+
+<!-- Секция с котиком, выходящим после листания до самого низа -->
+<div id="endCatSection" class="end-cat-section">
+    <div class="cat-card">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3hpa2pxYjFnYnVvNDVubXZvOG51bzVldnlhODR5N3ZtdmgyOHR0YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VbnUQpnihPSIgIXuZv/giphy.gif" alt="Funny Cat" class="cat-img">
+        <h2>Вы долистали до конца, спасибочки! 🎉🐱</h2>
+        <p>Вы собрали <span id="finalCoins">0</span> FnE Coins!</p>
+        <button class="btn btn-blue pulse-button" onclick="scrollToTopAndReset()">Вернуться в начало 🚀</button>
+    </div>
+</div>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ПОЛНЫЙ СЛОВАРЬ ПЕРЕВОДОВ НА 3 ЯЗЫКА
+// --- СЛОВАРЬ ПЕРЕВОДОВ ---
 const translations = {
   ru: {
     "nav.courses": "Курсы", "nav.about": "О нас", "nav.teachers": "Преподаватели", "nav.faq": "FAQ", "nav.contact": "Контакты", "nav.cta": "Записаться ↗",
@@ -324,13 +340,8 @@ const translations = {
     "teachers.1.name": "Преподаватель", "teachers.1.desc": "Общий английский · Базовый уровень",
     "teachers.2.name": "Преподаватель", "teachers.2.desc": "Разговорные клубы · Практика речи",
     "teachers.3.name": "Преподаватель", "teachers.3.desc": "IELTS · Экзаменационная подготовка",
-    "teachers.note": "Замените эти образцы профилей на реальных преподавателей и фотографии.",
     "cta.eyebrow": "Ваш первый шаг", "cta.title": "Давайте подберем<br>правильный курс.", "cta.desc": "Расскажите немного о себе, и наша команда поможет выбрать оптимальный путь.", "cta.btn": "Записаться на курс ↗",
     "faq.eyebrow": "Полезно знать", "faq.title": "Остались вопросы?<br>Мы на связи.", "faq.desc": "Несколько ответов, которые помогут вам сделать первый шаг.",
-    "faq.1.q": "Как выбрать подходящий курс?", "faq.1.a": "Расскажите нам о ваших целях и текущем уровне, и команда подберет идеальную программу.",
-    "faq.2.q": "Нужно ли знать английский до начала занятий?", "faq.2.a": "Нет. Есть группы для начинающих с нуля. Просто укажите ваш опыт при регистрации.",
-    "faq.3.q": "Можно ли подготовиться к IELTS?", "faq.3.a": "Да, у нас есть специализированная программа подготовки к экзамену IELTS.",
-    "faq.4.q": "Как зарегистрироваться?", "faq.4.a": "Заполните форму ниже. Заявка мгновенно поступит на наш безопасный сервер.",
     "contact.eyebrow": "Контакты", "contact.title": "Начнем с простого<br>приветствия.", "contact.desc": "Оставьте свои данные и расскажите, что вы ищете.",
     "contact.subtitle": "Языковой центр английского языка", "contact.locLabel": "Адрес:", "contact.locVal": "Ташкент, ул. Навои, 12", "contact.phoneLabel": "Телефон:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Часы работы:", "contact.hoursVal": "Пн-Сб: 9:00 - 20:00",
     "form.nameLabel": "ФИО", "form.namePlace": "Ваше имя", "form.phoneLabel": "НОМЕР ТЕЛЕФОНА", "form.courseLabel": "КУРС",
@@ -358,13 +369,8 @@ const translations = {
     "teachers.1.name": "O'qituvchi", "teachers.1.desc": "Umumiy ingliz tili · Boshlang'ich",
     "teachers.2.name": "O'qituvchi", "teachers.2.desc": "So'zlashuv klublari · Nutq amaliyoti",
     "teachers.3.name": "O'qituvchi", "teachers.3.desc": "IELTS · Imtihonga tayyorgarlik",
-    "teachers.note": "Bu namunaviy profillarni haqiqiy o'qituvchilar va rasmlar bilan almashtiring.",
     "cta.eyebrow": "Birinchi qadam", "cta.title": "To'g'ri kursni<br>tanlaymiz.", "cta.desc": "O'zingiz haqingizda qisqacha gapirib bering, jamoamiz eng ma'qul yo'lni tanlashga yordam beradi.", "cta.btn": "Kursga yozilish ↗",
     "faq.eyebrow": "Foydali bilish", "faq.title": "Savollaringiz bormi?<br>Biz aloqadamiz.", "faq.desc": "Birinchi qadamni qo'yishga yordam beradigan bir nechta javoblar.",
-    "faq.1.q": "Mos kursni qanday tanlash mumkin?", "faq.1.a": "Maqsadlaringiz va darajangiz haqida ayting, jamoamiz mukammal dasturni tanlaydi.",
-    "faq.2.q": "Darslargacha ingliz tilini bilish kerakmi?", "faq.2.a": "Yo'q. Noldan boshlovchilar uchun guruhlarimiz bor. Ro'yxatdan o'tishda tajribangizni ko'rsating.",
-    "faq.3.q": "IELTS ga tayyorgarlik ko'rsa bo'ladimi?", "faq.3.a": "Ha, bizda maxsus IELTS tayyorgarlik dasturi mavjud.",
-    "faq.4.q": "Qanday ro'yxatdan o'tiladi?", "faq.4.a": "Quyidagi shaklni to'ldiring. Ariza xavfsiz serverimizga kelib tushadi.",
     "contact.eyebrow": "Aloqa", "contact.title": "Oddiy salomlashishdan<br>boshlaymiz.", "contact.desc": "Ma'lumotlaringizni qoldiring va nima qidirayotganingizni yozing.",
     "contact.subtitle": "Ingliz tili o'quv markazi", "contact.locLabel": "Manzil:", "contact.locVal": "Toshkent, Navoiy ko'chasi, 12", "contact.phoneLabel": "Telefon:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Ish vaqti:", "contact.hoursVal": "Dush-Shan: 9:00 - 20:00",
     "form.nameLabel": "F.I.O.", "form.namePlace": "Ismingiz", "form.phoneLabel": "TELEFON RAQAMI", "form.courseLabel": "KURSLAR",
@@ -392,13 +398,8 @@ const translations = {
     "teachers.1.name": "Teacher", "teachers.1.desc": "General English · Basic level",
     "teachers.2.name": "Teacher", "teachers.2.desc": "Speaking clubs · Speech practice",
     "teachers.3.name": "Teacher", "teachers.3.desc": "IELTS · Exam preparation",
-    "teachers.note": "Replace these sample profiles with real teachers and photos.",
     "cta.eyebrow": "Your first step", "cta.title": "Let's find the right<br>course.", "cta.desc": "Tell us a bit about yourself, and our team will help choose the optimal path.", "cta.btn": "Enroll in a course ↗",
     "faq.eyebrow": "Good to know", "faq.title": "Got questions?<br>We are in touch.", "faq.desc": "A few answers to help you take the first step.",
-    "faq.1.q": "How to choose the right course?", "faq.1.a": "Tell us about your goals and current level, and the team will pick the ideal program.",
-    "faq.2.q": "Do I need to know English before starting?", "faq.2.a": "No. There are groups for absolute beginners. Just indicate your experience during registration.",
-    "faq.3.q": "Can I prepare for IELTS?", "faq.3.a": "Yes, we have a specialized IELTS exam preparation program.",
-    "faq.4.q": "How to register?", "faq.4.a": "Fill out the form below. The application will instantly go to our secure server.",
     "contact.eyebrow": "Contacts", "contact.title": "Let's start with a simple<br>greeting.", "contact.desc": "Leave your details and tell us what you are looking for.",
     "contact.subtitle": "English Language Center", "contact.locLabel": "Address:", "contact.locVal": "Tashkent, Navoi str., 12", "contact.phoneLabel": "Phone:", "contact.emailLabel": "Email:", "contact.hoursLabel": "Hours:", "contact.hoursVal": "Mon-Sat: 9:00 - 20:00",
     "form.nameLabel": "FULL NAME", "form.namePlace": "Your name", "form.phoneLabel": "PHONE NUMBER", "form.courseLabel": "COURSE",
@@ -426,7 +427,7 @@ const savedLang = localStorage.getItem('preferredLang') || 'ru';
 document.getElementById('langSelect').value = savedLang;
 setLanguage(savedLang);
 
-// Скрипт частиц огня для лопания иконок
+// --- ОГНЕВОЙ ХОЛСТ И ЛОПАНИЕ ИКОНОК С МОНЕТАМИ ---
 const canvas = document.getElementById('fireCanvas');
 const ctx = canvas.getContext('2d');
 function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
@@ -434,14 +435,16 @@ window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
 let particles = [];
+let coins = 0;
+
 function createFireParticles(x, y) {
     for (let i = 0; i < 45; i++) {
         particles.push({
             x: x, y: y,
-            vx: (Math.random() - 0.5) * 8,
-            vy: (Math.random() - 0.5) * 8 - 2,
+            vx: (Math.random() - 0.5) * 10,
+            vy: (Math.random() - 0.5) * 10 - 2,
             size: Math.random() * 12 + 4,
-            color: `hsl(${Math.random() * 40 + 10}, 100%, 50%)`,
+            color: `hsl(${Math.random() * 45 + 10}, 100%, 50%)`,
             life: 1
         });
     }
@@ -465,6 +468,16 @@ function animateFire() {
 }
 animateFire();
 
+function showFloatingText(x, y, text) {
+    const el = document.createElement('div');
+    el.className = 'floating-coin-popup';
+    el.textContent = text;
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1000);
+}
+
 const popContainer = document.getElementById('popIcons');
 for (let i = 0; i < 5; i++) {
     spawnPopIcon(i);
@@ -473,13 +486,29 @@ for (let i = 0; i < 5; i++) {
 function spawnPopIcon(index) {
     const icon = document.createElement('div');
     icon.className = `pop-fne-icon icon-anim-${(index % 3) + 1}`;
-    icon.innerHTML = `<img src="IMG_20261026_094149_960.jpg" alt="FnE"><span>FnE</span>`;
-    icon.style.top = Math.random() * 80 + 10 + 'vh';
-    icon.style.left = Math.random() * 80 + 10 + 'vw';
+    
+    // Используем картинку ОООООООООО.png
+    icon.innerHTML = `<img src="ОООООООООО.png" alt="FnE Logo"><span>FnE</span>`;
+    icon.style.top = Math.random() * 75 + 10 + 'vh';
+    icon.style.left = Math.random() * 75 + 10 + 'vw';
     
     icon.addEventListener('click', (e) => {
         const rect = icon.getBoundingClientRect();
-        createFireParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        const posX = rect.left + rect.width / 2;
+        const posY = rect.top + rect.height / 2;
+        
+        createFireParticles(posX, posY);
+        showFloatingText(posX, posY, '+10 🪙');
+        
+        coins += 10;
+        const counterEl = document.getElementById('coinScore');
+        counterEl.textContent = coins;
+        document.getElementById('finalCoins').textContent = coins;
+        
+        const counterContainer = document.getElementById('coinCounter');
+        counterContainer.classList.add('pulse-gain');
+        setTimeout(() => counterContainer.classList.remove('pulse-gain'), 400);
+
         icon.classList.add('popped');
         setTimeout(() => {
             icon.remove();
@@ -489,12 +518,32 @@ function spawnPopIcon(index) {
     popContainer.appendChild(icon);
 }
 
+// --- АНИМАЦИЯ МАШИНКИ ПРИ СКРОЛЛЕ ---
 window.addEventListener('scroll', () => {
     const scrollCar = document.getElementById('scrollCar');
     const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
     scrollCar.style.right = scrollPercent + '%';
+
+    // ЭФФЕКТ ИСЧЕЗНОВЕНИЯ САЙТА В САМОМ КОНЦЕ СКРОЛЛА
+    const mainWrapper = document.getElementById('mainSiteWrapper');
+    const catSection = document.getElementById('endCatSection');
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    if (window.scrollY >= maxScroll - 40) {
+        mainWrapper.classList.add('disappear-site');
+        catSection.classList.add('show-cat');
+    }
 });
 
+function scrollToTopAndReset() {
+    const mainWrapper = document.getElementById('mainSiteWrapper');
+    const catSection = document.getElementById('endCatSection');
+    mainWrapper.classList.remove('disappear-site');
+    catSection.classList.remove('show-cat');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// --- НАБЛЮДАТЕЛЬ ЗА СКРОЛЛОМ ДЛЯ АНИМАЦИЙ ---
 document.addEventListener("DOMContentLoaded", function() {
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
     const observer = new IntersectionObserver((entries, observer) => {
@@ -508,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.reveal-block, .card-flip-in, .slide-in-left, .slide-in-right').forEach(el => observer.observe(el));
 });
 
-// Отправка формы на бэкенд
+// Отправка формы на сервер
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const formData = {
