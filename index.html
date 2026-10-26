@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- Холст для частичек огня -->
+    
+<!-- Холст для частиц огня -->
 <canvas id="fireCanvas"></canvas>
 
 <!-- Виджет монет -->
@@ -40,7 +40,7 @@
     <div class="wave wave2"></div>
 </div>
 
-<!-- Основная оболочка сайта (исчезает в самом конце) -->
+<!-- Основная оболочка сайта -->
 <div id="mainSiteWrapper">
 
 <header>
@@ -69,7 +69,7 @@
 <main>
 <section class="hero" id="home">
  <div class="container hero-grid">
-  <div class="hero-text-block slide-in-left">
+  <div class="hero-text-block anim-slide-left">
    <span class="eyebrow floating-badge" data-i18n="hero.eyebrow">✦ Языковой центр английского языка</span>
    <h1 data-i18n="hero.title" class="glitch-text">Английский открывает<br><span class="text-gradient">новые возможности.</span></h1>
    <p data-i18n="hero.desc" class="fade-in-up">Уверенно общайтесь, развивайте навыки и двигайтесь к своим целям по индивидуальной программе обучения.</p>
@@ -95,7 +95,8 @@
  </div>
 </section>
 
-<div class="stats reveal-block rotate-in">
+<!-- Уникальная анимация: Вращение со скейлом -->
+<div class="stats anim-rotate-scale">
  <div class="container stats-grid">
   <div class="stat"><strong data-i18n="stats.1.title">Индивидуально</strong><span data-i18n="stats.1.desc">Подход к обучению</span></div>
   <div class="stat"><strong data-i18n="stats.2.title">Практика</strong><span data-i18n="stats.2.desc">Живой английский</span></div>
@@ -104,7 +105,8 @@
  </div>
 </div>
 
-<section id="courses" class="reveal-block slide-up-3d">
+<!-- Уникальная анимация: Выплывание снизу с 3D-наклоном -->
+<section id="courses" class="anim-float-3d">
  <div class="container">
   <div class="section-head">
    <div>
@@ -114,19 +116,19 @@
    <p data-i18n="courses.desc">Начните с нуля или подготовьтесь к экзамену — выберите программу под свои цели.</p>
   </div>
   <div class="cards">
-   <article class="course card-flip-in">
+   <article class="course">
     <div class="course-top"><span class="course-icon spin-icon">🌱</span><span class="tag" data-i18n="course.1.tag">С НУЛЯ</span></div>
     <h3 data-i18n="course.1.name">Общий английский</h3>
     <p data-i18n="course.1.desc">Развивайте словарный запас, грамматику, разговорную речь, аудирование и письмо для реальной жизни.</p>
     <div class="course-meta"><span data-i18n="course.1.level">Начинающий → Продвинутый</span><span data-i18n="course.explore">Подробнее ↗</span></div>
    </article>
-   <article class="course card-flip-in" style="animation-delay:0.2s">
+   <article class="course">
     <div class="course-top"><span class="course-icon spin-icon">🎯</span><span class="tag" data-i18n="course.2.tag">ЭКЗАМЕНЫ</span></div>
     <h3 data-i18n="course.2.name">Подготовка к IELTS</h3>
     <p data-i18n="course.2.desc">Отрабатывайте эффективные стратегии и навыки для достижения желаемого балла на экзамене.</p>
     <div class="course-meta"><span data-i18n="course.2.level">Стратегия + практика</span><span data-i18n="course.explore">Подробнее ↗</span></div>
    </article>
-   <article class="course card-flip-in" style="animation-delay:0.4s">
+   <article class="course">
     <div class="course-top"><span class="course-icon spin-icon">💬</span><span class="tag" data-i18n="course.3.tag">РАЗГОВОР</span></div>
     <h3 data-i18n="course.3.name">Разговорный клуб</h3>
     <p data-i18n="course.3.desc">Практикуйте живую беседу, делитесь идеями и избавляйтесь от языкового барьера.</p>
@@ -136,7 +138,8 @@
  </div>
 </section>
 
-<section class="about reveal-block zoom-in-block" id="about">
+<!-- Уникальная анимация: Фокус-размытие -->
+<section class="about anim-blur-focus" id="about">
  <div class="container about-grid">
   <div class="about-visual float-anim">
    <div class="about-panel glassmorphism">
@@ -144,10 +147,10 @@
     <span data-i18n="about.panelDesc">Четкие цели. Живая практика. Мощная поддержка.</span>
    </div>
   </div>
-  <div class="slide-in-right">
+  <div>
    <span class="eyebrow floating-badge" data-i18n="about.eyebrow">О центре Fast and Easy</span>
    <h2 style="font-size:clamp(32px,4vw,48px);line-height:1.08;letter-spacing:-1.8px;margin:15px 0" data-i18n="about.title">Уверенность в каждом слове.</h2>
-   <p style="color:var(--muted)" data-i18n="about.desc">Мы верим, что изучение языка должно быть практичным, мотивированным и связанным с вашей реальной жизнью. Наш подход помогает уверенно расти шаг за шагом.</p>
+   <p style="color:var(--muted)" data-i18n="about.desc">Мы верим, что изучение языка должно быть практичным, мотивированным и связанным с вашей реальной жизнью. Наш подход помогает уверенно расти шаг за шаг.</p>
    <div class="checklist">
     <div class="check check-anim"><span class="checkmark pop-icon">✓</span><div><b data-i18n="about.check1.title">Четкие цели</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check1.desc">Понимайте, к чему вы стремистесь на каждом этапе.</span></div></div>
     <div class="check check-anim"><span class="checkmark pop-icon">✓</span><div><b data-i18n="about.check2.title">Живое общение</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check2.desc">Применяйте английский в ситуациях за пределами класса.</span></div></div>
@@ -158,7 +161,8 @@
  </div>
 </section>
 
-<section class="reveal-block cascade-steps">
+<!-- Уникальная анимация: Пружинящие шаги -->
+<section class="anim-elastic-steps">
  <div class="container">
   <div class="section-head">
    <div>
@@ -168,14 +172,15 @@
    <p data-i18n="steps.desc">Мы поможем определить ваш уровень и подобрать программу под ваш график и цели.</p>
   </div>
   <div class="steps">
-   <article class="step step-hover-bounce"><span class="step-num pulse-glow" data-i18n="steps.1.num">ШАГ 01</span><h3 data-i18n="steps.1.title">Расскажите о цели</h3><p data-i18n="steps.1.desc">Поделитесь, зачем вам английский и чего вы хотите достичь.</p></article>
-   <article class="step step-hover-bounce"><span class="step-num pulse-glow" data-i18n="steps.2.num">ШАГ 02</span><h3 data-i18n="steps.2.title">Определите уровень</h3><p data-i18n="steps.2.desc">Получите консультацию по вашему текущему уровню и подходящему курсу.</p></article>
-   <article class="step step-hover-bounce"><span class="step-num pulse-glow" data-i18n="steps.3.num">ШАГ 03</span><h3 data-i18n="steps.3.title">Начните обучение</h3><p data-i18n="steps.3.desc">Присоединяйтесь к группе, познакомьтесь с преподавателем и обретайте уверенность.</p></article>
+   <article class="step"><span class="step-num pulse-glow" data-i18n="steps.1.num">ШАГ 01</span><h3 data-i18n="steps.1.title">Расскажите о цели</h3><p data-i18n="steps.1.desc">Поделитесь, зачем вам английский и чего вы хотите достичь.</p></article>
+   <article class="step"><span class="step-num pulse-glow" data-i18n="steps.2.num">ШАГ 02</span><h3 data-i18n="steps.2.title">Определите уровень</h3><p data-i18n="steps.2.desc">Получите консультацию по вашему текущему уровню и подходящему курсу.</p></article>
+   <article class="step"><span class="step-num pulse-glow" data-i18n="steps.3.num">ШАГ 03</span><h3 data-i18n="steps.3.title">Начните обучение</h3><p data-i18n="steps.3.desc">Присоединяйтесь к группе, познакомьтесь с преподавателем и обретайте уверенность.</p></article>
   </div>
  </div>
 </section>
 
-<section id="teachers" class="reveal-block swing-in" style="background:#fff">
+<!-- Уникальная анимация: Маятник преподавателей -->
+<section id="teachers" class="anim-swing-teachers" style="background:#fff">
   <div class="container">
     <div class="section-head">
       <div>
@@ -185,14 +190,15 @@
       <p data-i18n="teachers.desc">Наши преподаватели направляют, вдохновляют и поддерживают вас на протяжении всей учебы.</p>
     </div>
     <div class="teacher-grid">
-      <article class="teacher card-3d-hover"><div class="avatar float-avatar">👩‍🏫</div><h3 data-i18n="teachers.1.name">Преподаватель</h3><p data-i18n="teachers.1.desc">Общий английский · Базовый уровень</p></article>
-      <article class="teacher card-3d-hover"><div class="avatar float-avatar">👨‍🏫</div><h3 data-i18n="teachers.2.name">Преподаватель</h3><p data-i18n="teachers.2.desc">Разговорные клубы · Практика речи</p></article>
-      <article class="teacher card-3d-hover"><div class="avatar float-avatar">👩🏻‍🏫</div><h3 data-i18n="teachers.3.name">Преподаватель</h3><p data-i18n="teachers.3.desc">IELTS · Экзаменационная подготовка</p></article>
+      <article class="teacher"><div class="avatar float-avatar">👩‍🏫</div><h3 data-i18n="teachers.1.name">Преподаватель</h3><p data-i18n="teachers.1.desc">Общий английский · Базовый уровень</p></article>
+      <article class="teacher"><div class="avatar float-avatar">👨‍🏫</div><h3 data-i18n="teachers.2.name">Преподаватель</h3><p data-i18n="teachers.2.desc">Разговорные клубы · Практика речи</p></article>
+      <article class="teacher"><div class="avatar float-avatar">👩🏻‍🏫</div><h3 data-i18n="teachers.3.name">Преподаватель</h3><p data-i18n="teachers.3.desc">IELTS · Экзаменационная подготовка</p></article>
     </div>
   </div>
 </section>
 
-<section class="reveal-block push-in">
+<!-- Уникальная анимация: Взрывное появление сертификатов -->
+<section class="anim-explode-certs">
   <div class="container">
     <div class="section-head">
       <div>
@@ -209,7 +215,7 @@
   </div>
 </section>
 
-<section class="reveal-block expand-center">
+<section class="anim-zoom-cta">
  <div class="container">
   <div class="cta neon-box-glow">
    <div>
@@ -223,7 +229,7 @@
  </div>
 </section>
 
-<section id="faq" class="reveal-block slide-in-left">
+<section id="faq" class="anim-slide-faq">
  <div class="container faq">
   <div>
    <span class="eyebrow floating-badge" data-i18n="faq.eyebrow">Полезно знать</span>
@@ -239,7 +245,7 @@
  </div>
 </section>
 
-<section class="contact reveal-block slide-in-right" id="contact">
+<section class="contact anim-slide-contact" id="contact">
  <div class="container">
   <div class="section-head">
    <div>
@@ -306,7 +312,7 @@
 
 </div> <!-- /mainSiteWrapper -->
 
-<!-- Секция с котиком, выходящим после листания до самого низа -->
+<!-- Секция с котиком в самом конце -->
 <div id="endCatSection" class="end-cat-section">
     <div class="cat-card">
         <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3hpa2pxYjFnYnVvNDVubXZvOG51bzVldnlhODR5N3ZtdmgyOHR0YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VbnUQpnihPSIgIXuZv/giphy.gif" alt="Funny Cat" class="cat-img">
@@ -319,7 +325,6 @@
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// --- СЛОВАРЬ ПЕРЕВОДОВ ---
 const translations = {
   ru: {
     "nav.courses": "Курсы", "nav.about": "О нас", "nav.teachers": "Преподаватели", "nav.faq": "FAQ", "nav.contact": "Контакты", "nav.cta": "Записаться ↗",
@@ -427,7 +432,7 @@ const savedLang = localStorage.getItem('preferredLang') || 'ru';
 document.getElementById('langSelect').value = savedLang;
 setLanguage(savedLang);
 
-// --- ОГНЕВОЙ ХОЛСТ И ЛОПАНИЕ ИКОНОК С МОНЕТАМИ ---
+// --- ОГНЕВОЙ ХОЛСТ И ЛОПАНИЕ ИКОНОК С НОВЫМ ЛОГОТИПОМ ОООООООООО.PNG ---
 const canvas = document.getElementById('fireCanvas');
 const ctx = canvas.getContext('2d');
 function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
@@ -487,7 +492,7 @@ function spawnPopIcon(index) {
     const icon = document.createElement('div');
     icon.className = `pop-fne-icon icon-anim-${(index % 3) + 1}`;
     
-    // Используем картинку ОООООООООО.png
+    // Используем новый логотип ОООООООООО.png
     icon.innerHTML = `<img src="ОООООООООО.png" alt="FnE Logo"><span>FnE</span>`;
     icon.style.top = Math.random() * 75 + 10 + 'vh';
     icon.style.left = Math.random() * 75 + 10 + 'vw';
@@ -518,13 +523,11 @@ function spawnPopIcon(index) {
     popContainer.appendChild(icon);
 }
 
-// --- АНИМАЦИЯ МАШИНКИ ПРИ СКРОЛЛЕ ---
 window.addEventListener('scroll', () => {
     const scrollCar = document.getElementById('scrollCar');
     const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
     scrollCar.style.right = scrollPercent + '%';
 
-    // ЭФФЕКТ ИСЧЕЗНОВЕНИЯ САЙТА В САМОМ КОНЦЕ СКРОЛЛА
     const mainWrapper = document.getElementById('mainSiteWrapper');
     const catSection = document.getElementById('endCatSection');
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -543,7 +546,7 @@ function scrollToTopAndReset() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// --- НАБЛЮДАТЕЛЬ ЗА СКРОЛЛОМ ДЛЯ АНИМАЦИЙ ---
+// Наблюдатель для уникальных анимаций блоков
 document.addEventListener("DOMContentLoaded", function() {
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
     const observer = new IntersectionObserver((entries, observer) => {
@@ -554,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.reveal-block, .card-flip-in, .slide-in-left, .slide-in-right').forEach(el => observer.observe(el));
+    document.querySelectorAll('.anim-rotate-scale, .anim-float-3d, .anim-blur-focus, .anim-elastic-steps, .anim-swing-teachers, .anim-explode-certs, .anim-zoom-cta, .anim-slide-faq, .anim-slide-contact').forEach(el => observer.observe(el));
 });
 
 // Отправка формы на сервер
