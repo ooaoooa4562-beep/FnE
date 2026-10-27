@@ -3,7 +3,7 @@ const path = require('path');
 const multer = require('multer');
 const app = express();
 
-// Настройка хранилища multer для загрузки фото
+// Настройка хранилища multer для загрузки фотографий
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, path.join(__dirname, 'public/uploads'));
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
-// Временная база данных в памяти (можно заменить на SQLite/JSON файл)
+// База данных в памяти (преподаватели и сертификаты)
 let dbData = {
     teachers: [
         { id: 1, name: "Анна Смирнова", desc: "Общий английский · Базовый уровень", avatar: "👩‍🏫" },
@@ -33,7 +33,6 @@ let dbData = {
 };
 
 // --- API ДЛЯ САЙТА ---
-
 app.get('/api/teachers', (req, res) => res.json(dbData.teachers));
 app.get('/api/certificates', (req, res) => res.json(dbData.certificates));
 
@@ -71,22 +70,33 @@ app.post('/api/upload', upload.single('photo'), (req, res) => {
     res.status(200).json({ success: true, url: `/uploads/${req.file.filename}` });
 });
 
-// --- API ДЛЯ АДМИН-БОТА ---
+// --- API ДЛЯ АДМИН-БОТА (CRUD) ---
 
+// Добавить преподавателя
 app.post('/api/admin/teacher', (req, res) => {
     const { secret, name, desc, avatar } = req.body;
-    if (secret !== (process.env.ADMIN_SECRET || 'mysecret123')) return res.status(403).json({ error: 'Доступ запрещен' });
+    if (secret !== process.env.ADMIN_SECRET) return res.status(403).json({ error: 'Доступ запрещен' });
     
-    const newT = { id: Date.now(), name, desc, avatar: avatar || ' TEACHER ' };
+    const newT = { id: Date.now(), name, desc, avatar: avatar || '👩‍🏫' };
     dbData.teachers.push(newT);
     res.json({ success: true, item: newT });
 });
 
+// Удалить преподавателя
 app.delete('/api/admin/teacher/:id', (req, res) => {
     const { secret } = req.body;
-    if (secret !== (process.env.ADMIN_SECRET || 'mysecret123')) return res.status(403).json({ error: 'Доступ запрещен' });
+    if (secret !== process.env.ADMIN_SECRET) return res.status(403).json({ error: 'Доступ запрещен' });
     
     dbData.teachers = dbData.teachers.filter(t => t.id != req.params.id);
+    res.json({ success: true });
+});
+
+// Удалить сертификат
+app.delete('/api/admin/cert/:id', (req, res) => {
+    const { secret } = req.body;
+    if (secret !== process.env.ADMIN_SECRET) return res.status(403).json({ error: 'Доступ запрещен' });
+    
+    dbData.certificates = dbData.certificates.filter(c => c.id != req.params.id);
     res.json({ success: true });
 });
 
