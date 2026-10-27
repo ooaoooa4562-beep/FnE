@@ -525,14 +525,16 @@ function spawnPopIcon(index) {
 
 window.addEventListener('scroll', () => {
     const scrollCar = document.getElementById('scrollCar');
-    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
     scrollCar.style.right = scrollPercent + '%';
 
+    // ЭФФЕКТ ИСЧЕЗНОВЕНИЯ САЙТА И КОТИК ТОЛЬКО В САМОМ КОНЦЕ
     const mainWrapper = document.getElementById('mainSiteWrapper');
     const catSection = document.getElementById('endCatSection');
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
-    if (window.scrollY >= maxScroll - 40) {
+    
+    // Срабатывает только тогда, когда до абсолютного низа страницы осталось меньше 5 пикселей
+    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 5) {
         mainWrapper.classList.add('disappear-site');
         catSection.classList.add('show-cat');
     }
