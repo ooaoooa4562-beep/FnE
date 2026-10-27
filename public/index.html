@@ -1,6 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fast and Easy — English Language Center</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<!-- Холст для частиц огня -->
+<canvas id="fireCanvas"></canvas>
+
+<!-- Виджет монет -->
+<div class="coin-counter" id="coinCounter">
+    <span class="coin-icon">🪙</span>
+    <span id="coinScore">0</span>
+    <span class="coin-label">FnE Coins</span>
+</div>
+
+<!-- Контейнер летающих логотипов -->
+<div class="pop-icon-container" id="popIcons"></div>
+
+<!-- Летающая ракета с логотипом -->
+<div class="flying-rocket">
+    <span class="rocket-icon">🚀</span>
+    <img src="ОООООООООО.png" alt="FnE Logo" class="rocket-logo-img">
+    <span class="rocket-text">Fast & Easy</span>
+</div>
+
+<!-- Проезжающая машинка -->
+<div class="scroll-car" id="scrollCar">
+    <span class="car-body">🏎️💨</span>
+    <span class="car-text">Fast & Easy Express!</span>
+</div>
+
+<!-- Анимированные фоновые волны -->
+<div class="background-waves">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+</div>
+
+<!-- Основная оболочка сайта -->
+<div id="mainSiteWrapper">
+
+<header>
+  <div class="container nav">
+    <a class="logo spin-on-hover" href="#home">
+        <span class="logo-mark pulse-glow">F</span>
+        <span>FAST <span style="color:#3766c7">&</span> EASY</span>
+    </a>
+    <nav class="navlinks">
+      <a href="#courses" class="nav-item-anim" data-i18n="nav.courses">Курсы</a>
+      <a href="#about" class="nav-item-anim" data-i18n="nav.about">О нас</a>
+      <a href="#teachers" class="nav-item-anim" data-i18n="nav.teachers">Преподаватели</a>
+      <a href="#dictionary" class="nav-item-anim" data-i18n="nav.dictionary">Словарь</a>
+      <a href="#faq" class="nav-item-anim" data-i18n="nav.faq">FAQ</a>
+      <a href="#contact" class="nav-item-anim" data-i18n="nav.contact">Контакты</a>
+      <select id="langSelect" class="lang-switcher" aria-label="Язык / Language">
+        <option value="ru">Русский</option>
+        <option value="uz">O'zbekcha</option>
+        <option value="en">English</option>
+      </select>
+    </nav>
+    <a class="nav-cta pulse-button" href="#contact" data-i18n="nav.cta">Записаться ↗</a>
+    <button class="menu" aria-label="Menu" onclick="document.querySelector('.navlinks').style.display=document.querySelector('.navlinks').style.display==='flex'?'none':'flex'">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="container hero-grid">
+  <div class="hero-text-block anim-slide-left">
+   <span class="eyebrow floating-badge" data-i18n="hero.eyebrow">✦ Языковой центр английского языка</span>
+   <h1 data-i18n="hero.title" class="glitch-text">Английский открывает<br><span class="text-gradient">новые возможности.</span></h1>
+   <p data-i18n="hero.desc" class="fade-in-up">Уверенно общайтесь, развивайте навыки и двигайтесь к своим целям по индивидуальной программе обучения.</p>
+   <div class="hero-actions">
+     <a class="btn btn-blue pulse-hover" href="#contact" data-i18n="hero.btnMain">Подобрать курс ↗</a>
+     <a class="btn btn-outline float-anim" href="#courses" data-i18n="hero.btnSec">Программы обучения</a>
+   </div>
+   <div class="hero-note" data-i18n="hero.note">Дружелюбные преподаватели · Практика с первого дня · Поддержка на каждом этапе</div>
+  </div>
+  <div class="hero-art 3d-tilt-card">
+   <div class="art-label infinite-spin-slow" data-i18n="hero.artLabel">⚙️ ВАШ НОВЫЙ ЭТАП НАЧИНАЕТСЯ ЗДЕСЬ</div>
+   <div class="student-card float-card">
+    <h3 data-i18n="hero.cardTitle">Готовы заговорить по-английски?</h3>
+    <p data-i18n="hero.cardDesc">Начните с комфортного уровня. Развивайтесь в своем темпе.</p>
+    <div class="mini-row">
+     <div class="mini pop-hover"><b>01</b><small data-i18n="hero.mini1">Узнать уровень</small></div>
+     <div class="mini pop-hover"><b>02</b><small data-i18n="hero.mini2">Выбрать курс</small></div>
+     <div class="mini pop-hover"><b>03</b><small data-i18n="hero.mini3">Начать обучение</small></div>
+    </div>
+   </div>
+   <div class="float-pill wiggle-anim" data-i18n="hero.pill">Давайте сделаем это ✨</div>
+  </div>
+ </div>
+</section>
+
+<!-- Уникальная анимация: Вращение со скейлом -->
+<div class="stats anim-rotate-scale">
+ <div class="container stats-grid">
+  <div class="stat"><strong data-i18n="stats.1.title">Индивидуально</strong><span data-i18n="stats.1.desc">Подход к обучению</span></div>
+  <div class="stat"><strong data-i18n="stats.2.title">Практика</strong><span data-i18n="stats.2.desc">Живой английский</span></div>
+  <div class="stat"><strong data-i18n="stats.3.title">Поддержка</strong><span data-i18n="stats.3.desc">С первого занятия</span></div>
+  <div class="stat"><strong data-i18n="stats.4.title">Ваш темп</strong><span data-i18n="stats.4.desc">Удобный ритм</span></div>
+ </div>
+</div>
+
+<!-- Уникальная анимация: Выплывание снизу с 3D-наклоном -->
+<section id="courses" class="anim-float-3d">
+ <div class="container">
+  <div class="section-head">
+   <div>
+    <span class="eyebrow floating-badge" data-i18n="courses.eyebrow">Выберите свой путь</span>
+    <h2 data-i18n="courses.title">Курсы для вашего<br>главного шага.</h2>
+   </div>
+   <p data-i18n="courses.desc">Начните с нуля или подготовьтесь к экзамену — выберите программу под свои цели.</p>
+  </div>
+  <div class="cards">
+   <article class="course">
+    <div class="course-top"><span class="course-icon spin-icon">🌱</span><span class="tag" data-i18n="course.1.tag">С НУЛЯ</span></div>
+    <h3 data-i18n="course.1.name">Общий английский</h3>
+    <p data-i18n="course.1.desc">Развивайте словарный запас, грамматику, разговорную речь, аудирование и письмо для реальной жизни.</p>
+    <div class="course-meta"><span data-i18n="course.1.level">Начинающий → Продвинутый</span><span data-i18n="course.explore">Подробнее ↗</span></div>
+   </article>
+   <article class="course">
+    <div class="course-top"><span class="course-icon spin-icon">🎯</span><span class="tag" data-i18n="course.2.tag">ЭКЗАМЕНЫ</span></div>
+    <h3 data-i18n="course.2.name">Подготовка к IELTS</h3>
+    <p data-i18n="course.2.desc">Отрабатывайте эффективные стратегии и навыки для достижения желаемого балла на экзамене.</p>
+    <div class="course-meta"><span data-i18n="course.2.level">Стратегия + практика</span><span data-i18n="course.explore">Подробнее ↗</span></div>
+   </article>
+   <article class="course">
+    <div class="course-top"><span class="course-icon spin-icon">💬</span><span class="tag" data-i18n="course.3.tag">РАЗГОВОР</span></div>
+    <h3 data-i18n="course.3.name">Разговорный клуб</h3>
+    <p data-i18n="course.3.desc">Практикуйте живую беседу, делитесь идеями и избавляйтесь от языкового барьера.</p>
+    <div class="course-meta"><span data-i18n="course.3.level">Разговорная практика</span><span data-i18n="course.explore">Подробнее ↗</span></div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<!-- Уникальная анимация: Фокус-размытие -->
+<section class="about anim-blur-focus" id="about">
+ <div class="container about-grid">
+  <div class="about-visual float-anim">
+   <div class="about-panel glassmorphism">
+    <strong data-i18n="about.panelTitle">Лучший способ выучить английский.</strong>
+    <span data-i18n="about.panelDesc">Четкие цели. Живая практика. Мощная поддержка.</span>
+   </div>
+  </div>
+  <div>
+   <span class="eyebrow floating-badge" data-i18n="about.eyebrow">О центре Fast and Easy</span>
+   <h2 style="font-size:clamp(32px,4vw,48px);line-height:1.08;letter-spacing:-1.8px;margin:15px 0" data-i18n="about.title">Уверенность в каждом слове.</h2>
+   <p style="color:var(--muted)" data-i18n="about.desc">Мы верим, что изучение языка должно быть практичным, мотивированным и связанным с вашей реальной жизнью. Наш подход помогает уверенно расти шаг за шаг.</p>
+   <div class="checklist">
+    <div class="check check-anim"><span class="checkmark pop-icon">✓</span><div><b data-i18n="about.check1.title">Четкие цели</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check1.desc">Понимайте, к чему вы стремистесь на каждом этапе.</span></div></div>
+    <div class="check check-anim"><span class="checkmark pop-icon">✓</span><div><b data-i18n="about.check2.title">Живое общение</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check2.desc">Применяйте английский в ситуациях за пределами класса.</span></div></div>
+    <div class="check check-anim"><span class="checkmark pop-icon">✓</span><div><b data-i18n="about.check3.title">Поддерживающая атмосфера</b><br><span style="color:var(--muted);font-size:14px" data-i18n="about.check3.desc">Задавайте вопросы, пробуйте, ошибайтесь и улучшайте навыки.</span></div></div>
+   </div>
+   <a class="btn btn-blue pulse-button" href="#contact" data-i18n="about.btn">Связаться с командой ↗</a>
+  </div>
+ </div>
+</section>
+
+<!-- Уникальная анимация: Пружинящие шаги -->
+<section class="anim-elastic-steps">
+ <div class="container">
+  <div class="section-head">
+   <div>
+    <span class="eyebrow floating-badge" data-i18n="steps.eyebrow">Как это работает</span>
+    <h2 data-i18n="steps.title">Ваш путь в три<br>простых шага.</h2>
+   </div>
+   <p data-i18n="steps.desc">Мы поможем определить ваш уровень и подобрать программу под ваш график и цели.</p>
+  </div>
+  <div class="steps">
+   <article class="step"><span class="step-num pulse-glow" data-i18n="steps.1.num">ШАГ 01</span><h3 data-i18n="steps.1.title">Расскажите о цели</h3><p data-i18n="steps.1.desc">Поделитесь, зачем вам английский и чего вы хотите достичь.</p></article>
+   <article class="step"><span class="step-num pulse-glow" data-i18n="steps.2.num">ШАГ 02</span><h3 data-i18n="steps.2.title">Определите уровень</h3><p data-i18n="steps.2.desc">Получите консультацию по вашему текущему уровню и подходящему курсу.</p></article>
+   <article class="step"><span class="step-num pulse-glow" data-i18n="steps.3.num">ШАГ 03</span><h3 data-i18n="steps.3.title">Начните обучение</h3><p data-i18n="steps.3.desc">Присоединяйтесь к группе, познакомьтесь с преподавателем и обретайте уверенность.</p></article>
+  </div>
+ </div>
+</section>
+
+<!-- Маятник преподавателей (Динамическая подгрузка с бэкенда) -->
+<section id="teachers" class="anim-swing-teachers" style="background:#fff">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow floating-badge" data-i18n="teachers.eyebrow">Наша команда</span>
+        <h2 data-i18n="teachers.title">Люди, которые помогают<br>вам двигаться вперед.</h2>
+      </div>
+      <p data-i18n="teachers.desc">Наши преподаватели направляют, вдохновляют и поддерживают вас на протяжении всей учебы.</p>
+    </div>
+    <div class="teacher-grid" id="teachersContainer">
+      <p style="text-align:center; width:100%; grid-column: span 3;">Загрузка преподавателей с сервера...</p>
+    </div>
+  </div>
+</section>
+
+<!-- Интерактивный словарь -->
+<section id="dictionary" class="anim-blur-focus" style="background:#f8fafc; padding: 80px 0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow floating-badge">Интерактив</span>
+        <h2>Мини-словарь Fast and Easy</h2>
+      </div>
+      <p>Нажимайте на карточки слов, чтобы узнать перевод и забрать бонусные монеты!</p>
+    </div>
+    <div class="cards">
+      <article class="course card-3d-hover" onclick="flipDictCard(this)" style="cursor:pointer; text-align:center;">
+        <div class="dict-side">
+          <span style="font-size:35px;">💡</span>
+          <h3>Resilience</h3>
+          <p style="color:var(--muted); margin-top:10px;">Нажмите для перевода</p>
+        </div>
+        <div class="dict-back" style="display:none; margin-top:10px;">
+          <h3 style="color:#2563eb;">Стойкость</h3>
+          <p>Умение быстро восстанавливаться после трудностей.</p>
+        </div>
+      </article>
+      <article class="course card-3d-hover" onclick="flipDictCard(this)" style="cursor:pointer; text-align:center;">
+        <div class="dict-side">
+          <span style="font-size:35px;">🚀</span>
+          <h3>Breakthrough</h3>
+          <p style="color:var(--muted); margin-top:10px;">Нажмите для перевода</p>
+        </div>
+        <div class="dict-back" style="display:none; margin-top:10px;">
+          <h3 style="color:#2563eb;">Прорыв</h3>
+          <p>Резкий скачок в учебе и разговорных навыках.</p>
+        </div>
+      </article>
+      <article class="course card-3d-hover" onclick="flipDictCard(this)" style="cursor:pointer; text-align:center;">
+        <div class="dict-side">
+          <span style="font-size:35px;">✨</span>
+          <h3>Seamless</h3>
+          <p style="color:var(--muted); margin-top:10px;">Нажмите для перевода</p>
+        </div>
+        <div class="dict-back" style="display:none; margin-top:10px;">
+          <h3 style="color:#2563eb;">Плавный / Бесшовный</h3>
+          <p>Работающий безупречно (как этот сайт!).</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Сертификаты (Динамическая подгрузка с бэкенда) -->
+<section class="anim-explode-certs">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow floating-badge">Доверие и качество</span>
+        <h2>Наши сертификаты<br>и достижения.</h2>
+      </div>
+      <p>Официальные лицензии и подтверждения стандартов нашего обучения.</p>
+    </div>
+    <div class="cards" id="certsContainer">
+      <article class="course glow-border"><div class="course-top"><span class="course-icon rotate-spin">📜</span><span class="tag">ЛИЦЕНЗИЯ</span></div><h3>Лицензия МинОбра</h3><p>Официальное разрешение на осуществление образовательной деятельности.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="anim-zoom-cta">
+ <div class="container">
+  <div class="cta neon-box-glow">
+   <div>
+    <span class="eyebrow floating-badge" style="background:#ffffff18;color:#fff;border-color:#ffffff30" data-i18n="cta.eyebrow">Ваш первый шаг</span>
+    <h2 data-i18n="cta.title">Давайте подберем<br>правильный курс.</h2>
+    <p data-i18n="cta.desc">Расскажите немного о себе, и наша команда поможет выбрать оптимальный путь.</p>
+    <a class="btn pulse-button" href="#contact" data-i18n="cta.btn">Записаться на курс ↗</a>
+   </div>
+   <div class="infinite-spin-slow" style="font-size:100px;text-align:center;">✨</div>
+  </div>
+ </div>
+</section>
+
+<section id="faq" class="anim-slide-faq">
+ <div class="container faq">
+  <div>
+   <span class="eyebrow floating-badge" data-i18n="faq.eyebrow">Полезно знать</span>
+   <h2 data-i18n="faq.title">Остались вопросы?<br>Мы на связи.</h2>
+   <p style="color:var(--muted)" data-i18n="faq.desc">Несколько ответов, которые помогут вам сделать первый шаг.</p>
+  </div>
+  <div class="faq-list">
+   <details class="faq-accordion"><summary data-i18n="faq.1.q">Как выбрать подходящий курс?</summary><p data-i18n="faq.1.a">Расскажите нам о ваших целях и текущем уровне, и команда подберет идеальную программу.</p></details>
+   <details class="faq-accordion"><summary data-i18n="faq.2.q">Нужно ли знать английский до начала занятий?</summary><p data-i18n="faq.2.a">Нет. Есть группы для начинающих с нуля. Просто укажите ваш опыт при регистрации.</p></details>
+   <details class="faq-accordion"><summary data-i18n="faq.3.q">Можно ли подготовиться к IELTS?</summary><p data-i18n="faq.3.a">Да, у нас есть специализированная программа подготовки к экзамену IELTS.</p></details>
+   <details class="faq-accordion"><summary data-i18n="faq.4.q">Как зарегистрироваться?</summary><p data-i18n="faq.4.a">Заполните форму ниже. Заявка мгновенно поступит на наш безопасный сервер и будет отправлена администраторам.</p></details>
+  </div>
+ </div>
+</section>
+
+<section class="contact anim-slide-contact" id="contact">
+ <div class="container">
+  <div class="section-head">
+   <div>
+    <span class="eyebrow floating-badge" data-i18n="contact.eyebrow">Контакты</span>
+    <h2 data-i18n="contact.title">Начнем с простого<br>приветствия.</h2>
+   </div>
+   <p data-i18n="contact.desc">Оставьте свои данные и расскажите, что вы ищете. Мы поможем выбрать лучшее решение.</p>
+  </div>
+  <div class="contact-grid">
+   <div class="contact-info glassmorphism">
+    <h3>Fast and Easy</h3>
+    <p data-i18n="contact.subtitle">Языковой центр английского языка</p>
+    <div class="info-line">📍 <b data-i18n="contact.locLabel">Адрес:</b> <span data-i18n="contact.locVal">Ташкент, ул. Навои, 12</span></div>
+    <div class="info-line">☎️ <b data-i18n="contact.phoneLabel">Телефон:</b> +998 (90) 123-45-67</div>
+    <div class="info-line">✉️ <b data-i18n="contact.emailLabel">Email:</b> info@fastandeasy.uz</div>
+    <div class="info-line">🕒 <b data-i18n="contact.hoursLabel">Часы работы:</b> <span data-i18n="contact.hoursVal">Пн-Сб: 9:00 - 20:00</span></div>
+   </div>
+   <form id="registerForm" class="glow-on-hover">
+    <div class="form-grid">
+     <div><label for="name" data-i18n="form.nameLabel">ФИО</label><input id="name" name="name" required placeholder="Ваше имя" data-i18n-placeholder="form.namePlace"></div>
+     <div><label for="phone" data-i18n="form.phoneLabel">НОМЕР ТЕЛЕФОНА</label><input id="phone" name="phone" required type="tel" placeholder="+998 __ ___ __ __"></div>
+     <div>
+      <label for="course" data-i18n="form.courseLabel">КУРС</label>
+      <select id="course" name="course">
+       <option value="General English" data-i18n="form.optGen">Общий английский (General English)</option>
+       <option value="IELTS" data-i18n="form.optIelts">Подготовка к IELTS</option>
+       <option value="Speaking Club" data-i18n="form.optSpeak">Разговорный клуб</option>
+       <option value="Not sure" data-i18n="form.optUnsure">Еще не уверен(а)</option>
+      </select>
+     </div>
+     <div>
+      <label for="level" data-i18n="form.levelLabel">ТЕКУЩИЙ УРОВЕНЬ</label>
+      <select id="level" name="level">
+       <option value="Not sure" data-i18n="form.lvl1">Пока не знаю / С нуля</option>
+       <option value="Beginner">Beginner (Начальный)</option>
+       <option value="Elementary">Elementary</option>
+       <option value="Pre-Intermediate">Pre-Intermediate</option>
+       <option value="Intermediate">Intermediate</option>
+       <option value="Upper-Intermediate">Upper-Intermediate</option>
+       <option value="Advanced">Advanced (Продвинутый)</option>
+      </select>
+     </div>
+     <div class="full">
+      <label for="message" data-i18n="form.goalLabel">ВАША ЦЕЛЬ (НЕОБЯЗАТЕЛЬНО)</label>
+      <textarea id="message" name="message" rows="3" placeholder="Расскажите, чего вы хотите достичь..." data-i18n-placeholder="form.goalPlace"></textarea>
+     </div>
+     <div class="full">
+      <button class="btn btn-blue pulse-button" type="submit" style="width:100%" data-i18n="form.submitBtn">Отправить заявку ↗</button>
+      <div id="formMsg" class="form-msg"></div>
+     </div>
+    </div>
+   </form>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container footer-row">
+  <a class="logo spin-on-hover" href="#home"><span class="logo-mark">F</span><span>FAST <span style="color:var(--gold)">&</span> EASY</span></a>
+  <span class="footer-muted">© <span id="year"></span> Fast and Easy. <span data-i18n="footer.concept">Концепт сайта языкового центра.</span></span>
+ </div>
+</footer>
+
+</div> <!-- /mainSiteWrapper -->
+
+<!-- Секция с котиком строго в самом конце страницы -->
+<div id="endCatSection" class="end-cat-section">
+    <div class="cat-card">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3hpa2pxYjFnYnVvNDVubXZvOG51bzVldnlhODR5N3ZtdmgyOHR0YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VbnUQpnihPSIgIXuZv/giphy.gif" alt="Funny Cat" class="cat-img">
+        <h2>Вы долистали до конца, спасибочки! 🎉🐱</h2>
+        <p>Вы собрали <span id="finalCoins">0</span> FnE Coins!</p>
+        <button class="btn btn-blue pulse-button" onclick="scrollToTopAndReset()">Вернуться в начало 🚀</button>
+    </div>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
 const translations = {
   ru: {
-    "nav.courses": "Курсы", "nav.about": "О нас", "nav.teachers": "Преподаватели", "nav.faq": "FAQ", "nav.contact": "Контакты", "nav.cta": "Записаться ↗",
+    "nav.courses": "Курсы", "nav.about": "О нас", "nav.teachers": "Преподаватели", "nav.dictionary": "Словарь", "nav.faq": "FAQ", "nav.contact": "Контакты", "nav.cta": "Записаться ↗",
     "hero.eyebrow": "✦ Языковой центр английского языка", "hero.title": "Английский открывает<br><span>новые возможности.</span>", "hero.desc": "Уверенно общайтесь, развивайте навыки и двигайтесь к своим целям по индивидуальной программе обучения.", "hero.btnMain": "Подобрать курс ↗", "hero.btnSec": "Программы обучения", "hero.note": "Дружелюбные преподаватели · Практика с первого дня · Поддержка на каждом этапе", "hero.artLabel": "⚙️ ВАШ НОВЫЙ ЭТАП НАЧИНАЕТСЯ ЗДЕСЬ", "hero.cardTitle": "Готовы заговорить по-английски?", "hero.cardDesc": "Начните с комфортного уровня. Развивайтесь в своем темпе.", "hero.mini1": "Узнать уровень", "hero.mini2": "Выбрать курс", "hero.mini3": "Начать обучение", "hero.pill": "Давайте сделаем это ✨",
     "stats.1.title": "Индивидуально", "stats.1.desc": "Подход к обучению", "stats.2.title": "Практика", "stats.2.desc": "Живой английский", "stats.3.title": "Поддержка", "stats.3.desc": "С первого занятия", "stats.4.title": "Ваш темп", "stats.4.desc": "Удобный ритм",
     "courses.eyebrow": "Выберите свой путь", "courses.title": "Курсы для вашего<br>главного шага.", "courses.desc": "Начните с нуля или подготовьтесь к экзамену — выберите программу под свои цели.",
@@ -15,9 +387,6 @@ const translations = {
     "steps.2.num": "ШАГ 02", "steps.2.title": "Определите уровень", "steps.2.desc": "Получите консультацию по вашему текущему уровню и подходящему курсу.",
     "steps.3.num": "ШАГ 03", "steps.3.title": "Начните обучение", "steps.3.desc": "Присоединяйтесь к группе, познакомьтесь с преподавателем и обретайте уверенность.",
     "teachers.eyebrow": "Наша команда", "teachers.title": "Люди, которые помогают<br>вам двигаться вперед.", "teachers.desc": "Наши преподаватели направляют, вдохновляют и поддерживают вас на протяжении всей учебы.",
-    "teachers.1.name": "Преподаватель", "teachers.1.desc": "Общий английский · Базовый уровень",
-    "teachers.2.name": "Преподаватель", "teachers.2.desc": "Разговорные клубы · Практика речи",
-    "teachers.3.name": "Преподаватель", "teachers.3.desc": "IELTS · Экзаменационная подготовка",
     "cta.eyebrow": "Ваш первый шаг", "cta.title": "Давайте подберем<br>правильный курс.", "cta.desc": "Расскажите немного о себе, и наша команда поможет выбрать оптимальный путь.", "cta.btn": "Записаться на курс ↗",
     "faq.eyebrow": "Полезно знать", "faq.title": "Остались вопросы?<br>Мы на связи.", "faq.desc": "Несколько ответов, которые помогут вам сделать первый шаг.",
     "contact.eyebrow": "Контакты", "contact.title": "Начнем с простого<br>приветствия.", "contact.desc": "Оставьте свои данные и расскажите, что вы ищете.",
@@ -29,7 +398,7 @@ const translations = {
     "form.submitBtn": "Отправить заявку ↗", "footer.concept": "Концепт сайта языкового центра."
   },
   uz: {
-    "nav.courses": "Kurslar", "nav.about": "Biz haqimizda", "nav.teachers": "O'qituvchilar", "nav.faq": "FAQ", "nav.contact": "Aloqa", "nav.cta": "Ro'yxatdan o'tish ↗",
+    "nav.courses": "Kurslar", "nav.about": "Biz haqimizda", "nav.teachers": "O'qituvchilar", "nav.dictionary": "Lug'at", "nav.faq": "FAQ", "nav.contact": "Aloqa", "nav.cta": "Ro'yxatdan o'tish ↗",
     "hero.eyebrow": "✦ Ingliz tili o'quv markazi", "hero.title": "Ingliz tili yangi<br><span>eshiklarni ochadi.</span>", "hero.desc": "O'zingizga bo'lgan ishonchni oshiring, erkin muloqot qiling va shaxsiy ta'lim dasturi bilan maqsadingizga erishing.", "hero.btnMain": "Kursni tanlash ↗", "hero.btnSec": "Dasturlarni ko'rish", "hero.note": "Tajribali o'qituvchilar · Amaliy ta'lim · Har qadamda yordam", "hero.artLabel": "⚙️ SIZNING YANGI BOSQICHINGIZ SHU YERDAN BOSHLANADI", "hero.cardTitle": "Ingliz tilida gaplashishga tayyormisiz?", "hero.cardDesc": "Darajangizdan boshlang. O'z sur'atingizda o'siring.", "hero.mini1": "Darajani aniqlash", "hero.mini2": "Kursni tanlash", "hero.mini3": "Natijaga erishish", "hero.pill": "Buni amalga oshiramiz ✨",
     "stats.1.title": "Shaxsiy", "stats.1.desc": "Ta'lim yondashuvi", "stats.2.title": "Amaliy", "stats.2.desc": "Kundalik ingliz tili", "stats.3.title": "Yordam", "stats.3.desc": "Birinchi darsdan boshlab", "stats.4.title": "O'z sur'atingiz", "stats.4.desc": "Sizning yo'lingiz",
     "courses.eyebrow": "Yo'nalishni tanlang", "courses.title": "Sizning muhim<br>qadamingiz uchun kurslar.", "courses.desc": "Noldan boshlayapsizmi yoki imtihonga tayyorgarlik ko'ryapsizmi, o'z maqsadingizga mos dasturni toping.",
@@ -44,9 +413,6 @@ const translations = {
     "steps.2.num": "2-QADAM", "steps.2.title": "Darajani aniqlang", "steps.2.desc": "Hozirgi darajangiz va mos kurs bo'yicha maslahat oling.",
     "steps.3.num": "3-QADAM", "steps.3.title": "O'qishni boshlang", "steps.3.desc": "Guruhga qo'shiling, o'qituvchi bilan tanishing va ishonch hosil qiling.",
     "teachers.eyebrow": "Bizning jamoa", "teachers.title": "Sizga oldinga intilishga<br>yordam beruvchi insonlar.", "teachers.desc": "O'qituvchilarimiz butun o'qish davomida sizni yo'naltiradi va ilhomlantiradi.",
-    "teachers.1.name": "O'qituvchi", "teachers.1.desc": "Umumiy ingliz tili · Boshlang'ich",
-    "teachers.2.name": "O'qituvchi", "teachers.2.desc": "So'zlashuv klublari · Nutq amaliyoti",
-    "teachers.3.name": "O'qituvchi", "teachers.3.desc": "IELTS · Imtihonga tayyorgarlik",
     "cta.eyebrow": "Birinchi qadam", "cta.title": "To'g'ri kursni<br>tanlaymiz.", "cta.desc": "O'zingiz haqingizda qisqacha gapirib bering, jamoamiz eng ma'qul yo'lni tanlashga yordam beradi.", "cta.btn": "Kursga yozilish ↗",
     "faq.eyebrow": "Foydali bilish", "faq.title": "Savollaringiz bormi?<br>Biz aloqadamiz.", "faq.desc": "Birinchi qadamni qo'yishga yordam beradigan bir nechta javoblar.",
     "contact.eyebrow": "Aloqa", "contact.title": "Oddiy salomlashishdan<br>boshlaymiz.", "contact.desc": "Ma'lumotlaringizni qoldiring va nima qidirayotganingizni yozing.",
@@ -58,7 +424,7 @@ const translations = {
     "form.submitBtn": "Arizani yuborish ↗", "footer.concept": "O'quv markazi veb-sayt konsepsiyasi."
   },
   en: {
-    "nav.courses": "Courses", "nav.about": "About", "nav.teachers": "Teachers", "nav.faq": "FAQ", "nav.contact": "Contact", "nav.cta": "Enroll ↗",
+    "nav.courses": "Courses", "nav.about": "About", "nav.teachers": "Teachers", "nav.dictionary": "Dictionary", "nav.faq": "FAQ", "nav.contact": "Contact", "nav.cta": "Enroll ↗",
     "hero.eyebrow": "✦ English Language Center", "hero.title": "English opens up<br><span>new opportunities.</span>", "hero.desc": "Communicate with confidence, build skills, and achieve your goals with a personalized learning program.", "hero.btnMain": "Find a course ↗", "hero.btnSec": "Learning programs", "hero.note": "Friendly teachers · Practice from day one · Support at every step", "hero.artLabel": "⚙️ YOUR NEW CHAPTER STARTS HERE", "hero.cardTitle": "Ready to speak English?", "hero.cardDesc": "Start at a comfortable level. Grow at your own pace.", "hero.mini1": "Check level", "hero.mini2": "Pick course", "hero.mini3": "Start learning", "hero.pill": "Let's do this ✨",
     "stats.1.title": "Individual", "stats.1.desc": "Approach to learning", "stats.2.title": "Practice", "stats.2.desc": "Live English", "stats.3.title": "Support", "stats.3.desc": "From day one", "stats.4.title": "Your pace", "stats.4.desc": "Comfortable rhythm",
     "courses.eyebrow": "Choose your path", "courses.title": "Courses for your<br>main step.", "courses.desc": "Start from scratch or prepare for an exam — choose the program for your goals.",
@@ -73,9 +439,6 @@ const translations = {
     "steps.2.num": "STEP 02", "steps.2.title": "Determine level", "steps.2.desc": "Get a consultation on your current level and suitable course.",
     "steps.3.num": "STEP 03", "steps.3.title": "Start learning", "steps.3.desc": "Join a group, meet your teacher, and build confidence.",
     "teachers.eyebrow": "Our team", "teachers.title": "People who help you<br>move forward.", "teachers.desc": "Our teachers guide, inspire, and support you throughout your studies.",
-    "teachers.1.name": "Teacher", "teachers.1.desc": "General English · Basic level",
-    "teachers.2.name": "Teacher", "teachers.2.desc": "Speaking clubs · Speech practice",
-    "teachers.3.name": "Teacher", "teachers.3.desc": "IELTS · Exam preparation",
     "cta.eyebrow": "Your first step", "cta.title": "Let's find the right<br>course.", "cta.desc": "Tell us a bit about yourself, and our team will help choose the optimal path.", "cta.btn": "Enroll in a course ↗",
     "faq.eyebrow": "Good to know", "faq.title": "Got questions?<br>We are in touch.", "faq.desc": "A few answers to help you take the first step.",
     "contact.eyebrow": "Contacts", "contact.title": "Let's start with a simple<br>greeting.", "contact.desc": "Leave your details and tell us what you are looking for.",
@@ -105,7 +468,7 @@ const savedLang = localStorage.getItem('preferredLang') || 'ru';
 document.getElementById('langSelect').value = savedLang;
 setLanguage(savedLang);
 
-// --- ОГНЕВОЙ ХОЛСТ И ЛОПАНИЕ ИКОНОК С НОВЫМ ЛОГОТИПОМ ОООООООООО.PNG ---
+// --- ОГНЕВОЙ ХОЛСТ И ЛОПАНИЕ ИКОНОК С ЛОГОТИПОМ ОООООООООО.PNG ---
 const canvas = document.getElementById('fireCanvas');
 const ctx = canvas.getContext('2d');
 function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
@@ -164,8 +527,6 @@ for (let i = 0; i < 5; i++) {
 function spawnPopIcon(index) {
     const icon = document.createElement('div');
     icon.className = `pop-fne-icon icon-anim-${(index % 3) + 1}`;
-    
-    // Используем новый логотип ОООООООООО.png
     icon.innerHTML = `<img src="ОООООООООО.png" alt="FnE Logo"><span>FnE</span>`;
     icon.style.top = Math.random() * 75 + 10 + 'vh';
     icon.style.left = Math.random() * 75 + 10 + 'vw';
@@ -179,8 +540,7 @@ function spawnPopIcon(index) {
         showFloatingText(posX, posY, '+10 🪙');
         
         coins += 10;
-        const counterEl = document.getElementById('coinScore');
-        counterEl.textContent = coins;
+        document.getElementById('coinScore').textContent = coins;
         document.getElementById('finalCoins').textContent = coins;
         
         const counterContainer = document.getElementById('coinCounter');
@@ -196,46 +556,102 @@ function spawnPopIcon(index) {
     popContainer.appendChild(icon);
 }
 
+// Интерактив словаря (переворот карточек)
+function flipDictCard(card) {
+    const side = card.querySelector('.dict-side');
+    const back = card.querySelector('.dict-back');
+    if (back.style.display === 'none') {
+        side.style.display = 'none';
+        back.style.display = 'block';
+        coins += 5;
+        document.getElementById('coinScore').textContent = coins;
+        document.getElementById('finalCoins').textContent = coins;
+    } else {
+        side.style.display = 'block';
+        back.style.display = 'none';
+    }
+}
+
+// Скролл, машинка и строгий котик в самом низу
 window.addEventListener('scroll', () => {
     const scrollCar = document.getElementById('scrollCar');
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
-    scrollCar.style.right = scrollPercent + '%';
+    if (scrollCar) scrollCar.style.right = scrollPercent + '%';
 
-    // ЭФФЕКТ ИСЧЕЗНОВЕНИЯ САЙТА И КОТИК ТОЛЬКО В САМОМ КОНЦЕ
     const mainWrapper = document.getElementById('mainSiteWrapper');
     const catSection = document.getElementById('endCatSection');
     
-    // Срабатывает только тогда, когда до абсолютного низа страницы осталось меньше 5 пикселей
+    // Срабатывает строго на абсолютном дне страницы после футера
     if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 5) {
-        mainWrapper.classList.add('disappear-site');
-        catSection.classList.add('show-cat');
+        if (mainWrapper) mainWrapper.classList.add('disappear-site');
+        if (catSection) catSection.classList.add('show-cat');
     }
 });
 
 function scrollToTopAndReset() {
     const mainWrapper = document.getElementById('mainSiteWrapper');
     const catSection = document.getElementById('endCatSection');
-    mainWrapper.classList.remove('disappear-site');
-    catSection.classList.remove('show-cat');
+    if (mainWrapper) mainWrapper.classList.remove('disappear-site');
+    if (catSection) catSection.classList.remove('show-cat');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Наблюдатель для уникальных анимаций блоков
-document.addEventListener("DOMContentLoaded", function() {
+// Динамическая загрузка преподавателей и сертификатов с сервера (бэкенда)
+async function loadDynamicData() {
+    try {
+        const resT = await fetch('/api/teachers');
+        const teachers = await resT.json();
+        const tContainer = document.getElementById('teachersContainer');
+        if (tContainer && teachers.length > 0) {
+            tContainer.innerHTML = '';
+            teachers.forEach(t => {
+                const article = document.createElement('article');
+                article.className = 'teacher';
+                article.innerHTML = `
+                    <div class="avatar float-avatar">${t.avatar || '👩‍🏫'}</div>
+                    <h3>${t.name}</h3>
+                    <p>${t.desc}</p>
+                `;
+                tContainer.appendChild(article);
+            });
+        }
+
+        const resC = await fetch('/api/certificates');
+        const certs = await resC.json();
+        const cContainer = document.getElementById('certsContainer');
+        if (cContainer && certs.length > 0) {
+            cContainer.innerHTML = '';
+            certs.forEach(c => {
+                const article = document.createElement('article');
+                article.className = 'course glow-border';
+                article.innerHTML = `
+                    <div class="course-top"><span class="course-icon rotate-spin">📜</span><span class="tag">СЕРТИФИКАТ</span></div>
+                    <h3>${c.title}</h3>
+                    <p>${c.desc}</p>
+                `;
+                cContainer.appendChild(article);
+            });
+        }
+    } catch (e) {
+        console.error('Ошибка загрузки данных с бэкенда', e);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadDynamicData();
+    
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, observerOptions);
 
     document.querySelectorAll('.anim-rotate-scale, .anim-float-3d, .anim-blur-focus, .anim-elastic-steps, .anim-swing-teachers, .anim-explode-certs, .anim-zoom-cta, .anim-slide-faq, .anim-slide-contact').forEach(el => observer.observe(el));
 });
 
-// Отправка формы на сервер
+// Отправка формы на сервер с уведомлением в Telegram
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const formData = {
