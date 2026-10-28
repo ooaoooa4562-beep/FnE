@@ -15,7 +15,6 @@ function isAdmin(userId) {
     return ADMIN_IDS.includes(userId);
 }
 
-// Главное меню управления
 function sendMainMenu(chatId) {
     bot.sendMessage(chatId, '👑 *Панель администратора Fast and Easy*\n\nВыберите нужный раздел:', {
         parse_mode: 'Markdown',
@@ -35,11 +34,10 @@ bot.onText(/\/start/, (msg) => {
     sendMainMenu(msg.chat.id);
 });
 
-// Команда добавления преподавателя через текст: /add_teacher Имя | Описание | Эмодзи
 bot.onText(/\/add_teacher (.+)/, async (msg, match) => {
     if (!isAdmin(msg.chat.id)) return;
     const parts = match[1].split('|').map(p => p.trim());
-    if (parts.length < 2) return bot.sendMessage(msg.chat.id, '⚠️ Неверный формат. Используйте: `/add_teacher Имя | Описание | Эмодзи`', { parse_mode: 'Markdown' });
+    if (parts.length < 2) return bot.sendMessage(msg.chat.id, '⚠️ Формат: `/add_teacher Имя | Описание | Эмодзи`', { parse_mode: 'Markdown' });
 
     try {
         await fetch(`${API_URL}/teacher`, {
@@ -49,15 +47,14 @@ bot.onText(/\/add_teacher (.+)/, async (msg, match) => {
         });
         bot.sendMessage(msg.chat.id, `✅ Преподаватель "${parts[0]}" успешно добавлен!`);
     } catch (e) {
-        bot.sendMessage(msg.chat.id, '❌ Ошибка при добавлении преподавателя на сервер.');
+        bot.sendMessage(msg.chat.id, '❌ Ошибка при добавлении преподавателя.');
     }
 });
 
-// Команда добавления сертификата через текст: /add_cert Название | Описание
 bot.onText(/\/add_cert (.+)/, async (msg, match) => {
     if (!isAdmin(msg.chat.id)) return;
     const parts = match[1].split('|').map(p => p.trim());
-    if (parts.length < 2) return bot.sendMessage(msg.chat.id, '⚠️ Неверный формат. Используйте: `/add_cert Название | Описание`', { parse_mode: 'Markdown' });
+    if (parts.length < 2) return bot.sendMessage(msg.chat.id, '⚠️ Формат: `/add_cert Название | Описание`', { parse_mode: 'Markdown' });
 
     try {
         await fetch(`${API_URL}/cert`, {
@@ -71,7 +68,6 @@ bot.onText(/\/add_cert (.+)/, async (msg, match) => {
     }
 });
 
-// Команда рассылки: /broadcast Текст
 bot.onText(/\/broadcast (.+)/, (msg, match) => {
     if (!isAdmin(msg.chat.id)) return;
     const text = match[1];
@@ -81,12 +77,30 @@ bot.onText(/\/broadcast (.+)/, (msg, match) => {
     bot.sendMessage(msg.chat.id, '✅ Сообщение успешно разослано всем администраторам!');
 });
 
-// Обработка всех интерактивных нажатий на инлайн-кнопки
+// Публикация анонса в Telegram-канал прямо из бота: /post_channel Текст
+bot.onText(/\/post_channel (.+)/, async (msg, match) => {
+    const chatId = msg.chat.id;
+    if (!isAdmin(chatId)) return;
+
+    const postText = match[1];
+    const channelId = process.env.CHANNEL_ID;
+
+    if (!channelId) {
+        return bot.sendMessage(chatId, '⚠️ Переменная CHANNEL_ID не настроена в окружении.');
+    }
+
+    try {
+        await bot.sendMessage(channelId, postText, { parse_mode: 'Markdown' });
+        bot.sendMessage(chatId, '📢 *Пост успешно опубликован в канале!*', { parse_mode: 'Markdown' });
+    } catch (e) {
+        bot.sendMessage(chatId, '❌ Ошибка публикации в канал. Убедитесь, что бот добавлен в администраторы канала.');
+    }
+});
+
 bot.on('callback_query', async (query) => {
     const chatId = query.message.chat.id;
     if (!isAdmin(chatId)) return;
 
-    // 1. Статистика
     if (query.data === 'get_stats') {
         try {
             const res = await fetch(`${API_URL}/stats`, {
@@ -100,10 +114,7 @@ bot.on('callback_query', async (query) => {
         } catch (e) {
             bot.sendMessage(chatId, 'Ошибка получения статистики.');
         }
-    }
-
-    // 2. Список заявок с сайта (CRM)
-    else if (query.data === 'list_leads') {
+    } else if (query.data === 'list_leads') {
         try {
             const res = await fetch(`${API_URL}/leads`, {
                 method: 'POST',
@@ -129,10 +140,7 @@ bot.on('callback_query', async (query) => {
         } catch (e) {
             bot.sendMessage(chatId, 'Ошибка загрузки заявок.');
         }
-    }
-
-    // Отметка заявки как обработанной
-    else if (query.data.startsWith('lead_done_')) {
+    } else if (query.data.startsWith('lead_done_')) {
         const id = query.data.split('_')[2];
         try {
             await fetch(`${API_URL}/leads/status`, {
@@ -145,10 +153,7 @@ bot.on('callback_query', async (query) => {
         } catch (e) {
             bot.answerCallbackQuery(query.id, { text: 'Ошибка изменения статуса.' });
         }
-    }
-
-    // 3. Список преподавателей
-    else if (query.data === 'list_teachers') {
+    } else if (query.data === 'list_teachers') {
         try {
             const res = await fetch(`${BACKEND_URL}/api/teachers`);
             const teachers = await res.json();
@@ -164,10 +169,7 @@ bot.on('callback_query', async (query) => {
         } catch (e) {
             bot.sendMessage(chatId, 'Ошибка получения преподавателей.');
         }
-    }
-
-    // 4. Список сертификатов
-    else if (query.data === 'list_certs') {
+    } else if (query.data === 'list_certs') {
         try {
             const res = await fetch(`${BACKEND_URL}/api/certificates`);
             const certs = await res.json();
@@ -183,37 +185,26 @@ bot.on('callback_query', async (query) => {
         } catch (e) {
             bot.sendMessage(chatId, 'Ошибка получения сертификатов.');
         }
-    }
-
-    // Удаление преподавателя
-    else if (query.data.startsWith('del_teacher_')) {
+    } else if (query.data.startsWith('del_teacher_')) {
         const id = query.data.split('_')[2];
         await fetch(`${API_URL}/teacher/${id}`, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ secret: SECRET }) });
-        bot.answerCallbackQuery(query.id, { text: 'Преподаватель удален!' });
+        bot.answerCallbackQuery(query.id, { text: 'Удалено!' });
         bot.editMessageText('❌ Преподаватель удален.', { chat_id: chatId, message_id: query.message.message_id });
-    }
-
-    // Удаление сертификата
-    else if (query.data.startsWith('del_cert_')) {
+    } else if (query.data.startsWith('del_cert_')) {
         const id = query.data.split('_')[2];
         await fetch(`${API_URL}/cert/${id}`, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ secret: SECRET }) });
-        bot.answerCallbackQuery(query.id, { text: 'Сертификат удален!' });
+        bot.answerCallbackQuery(query.id, { text: 'Удалено!' });
         bot.editMessageText('❌ Сертификат удален.', { chat_id: chatId, message_id: query.message.message_id });
-    }
-
-    // Инструкции / подсказки
-    else if (query.data === 'add_teacher_prompt') {
-        bot.sendMessage(chatId, 'Отправьте команду в формате:\n`/add_teacher Имя | Описание | Эмодзи`', { parse_mode: 'Markdown' });
+    } else if (query.data === 'add_teacher_prompt') {
+        bot.sendMessage(chatId, 'Отправьте команду:\n`/add_teacher Имя | Описание | Эмодзи`', { parse_mode: 'Markdown' });
         bot.answerCallbackQuery(query.id);
-    }
-    else if (query.data === 'add_cert_prompt') {
-        bot.sendMessage(chatId, 'Отправьте команду в формате:\n`/add_cert Название | Описание`', { parse_mode: 'Markdown' });
+    } else if (query.data === 'add_cert_prompt') {
+        bot.sendMessage(chatId, 'Отправьте команду:\n`/add_cert Название | Описание`', { parse_mode: 'Markdown' });
         bot.answerCallbackQuery(query.id);
-    }
-    else if (query.data === 'broadcast_prompt') {
-        bot.sendMessage(chatId, 'Отправьте команду для рассылки всем администраторам:\n`/broadcast Ваш текст объявления`', { parse_mode: 'Markdown' });
+    } else if (query.data === 'broadcast_prompt') {
+        bot.sendMessage(chatId, 'Отправьте команду для рассылки:\n`/broadcast Текст объявления`', { parse_mode: 'Markdown' });
         bot.answerCallbackQuery(query.id);
     }
 });
 
-console.log('🤖 Telegram bot with full CRM & CRUD features is running...');
+console.log('🤖 Telegram bot with full CRM & Channel support is running...');
